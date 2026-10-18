@@ -40,7 +40,7 @@
           <div>
             <div class="flex items-center space-x-2">
               <h1 class="text-lg font-bold tracking-tight text-white">Fantasy NBA Hub</h1>
-              <span class="text-xs bg-indigo-500/20 text-indigo-400 font-semibold px-2 py-0.5 rounded-full border border-indigo-500/30">Pro v2.4</span>
+              <span class="text-xs bg-indigo-500/20 text-indigo-400 font-semibold px-2 py-0.5 rounded-full border border-indigo-500/30">Pro v2.5</span>
             </div>
             <p class="text-xs text-gray-400 flex items-center gap-1.5 mt-0.5">
               <i class="fa-regular fa-envelope text-purple-400"></i>
@@ -56,7 +56,7 @@
               <span id="syncDotPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span id="syncDot" class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span id="syncStatusText" class="font-medium">Yahoo Sync Active</span>
+            <span id="syncStatusText" class="font-medium">Connect Yahoo</span>
             <i class="fa-solid fa-arrows-rotate text-xs opacity-70 ml-1"></i>
           </button>
         </div>
@@ -64,8 +64,6 @@
 
       <!-- Center / Right: Time Sync & Active League Selector -->
       <div class="flex items-center justify-between md:justify-end gap-4 w-full md:w-auto">
-        
-        <!-- HKT Clock & Waiver Countdown -->
         <div class="bg-gray-900/80 border border-gray-800 px-3 py-1.5 rounded-lg text-right hidden sm:block">
           <div class="text-[10px] uppercase tracking-wider text-gray-400 font-medium">HKT Target (3:30 PM)</div>
           <div class="text-xs font-mono font-bold text-amber-400 flex items-center justify-end gap-1.5">
@@ -74,7 +72,6 @@
           </div>
         </div>
 
-        <!-- Active League Selector -->
         <div class="flex items-center space-x-2">
           <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider hidden lg:block">League:</label>
           <select id="leagueSelector" onchange="switchLeague(this.value)" class="bg-gray-800 text-sm font-semibold text-white border border-gray-700 rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
@@ -83,9 +80,7 @@
             <option value="league3">🔥 Deep Dynasty 9-Cat (14T H2H)</option>
           </select>
         </div>
-
       </div>
-
     </div>
   </header>
 
@@ -118,45 +113,19 @@
   <!-- MAIN CONTENT CONTAINER -->
   <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 flex-1 w-full">
 
-    <!-- ==================== TAB 1: TEAM RANKINGS & PROJECTED STATS ==================== -->
+    <!-- ==================== TAB 1: TEAM RANKINGS ==================== -->
     <section id="tab-rankings" class="tab-content space-y-6">
-      
-      <!-- Top Overview Banner -->
       <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-2">
             <h2 id="leagueTitle" class="text-xl font-bold text-white">Mamba Masters 9-Cat (12 Teams)</h2>
-            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">Pre-Season Projections Synced</span>
+            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">Demo Mode</span>
           </div>
-          <p class="text-sm text-gray-400 mt-1">Full season projections calculated using consensus expert rankings, projected usage, and 9-category Z-scores.</p>
-        </div>
-
-        <div class="flex items-center gap-3 self-stretch md:self-auto justify-between">
-          <div class="bg-gray-900 border border-gray-800 p-1 rounded-lg flex items-center">
-            <button onclick="toggleStatMode('perGame')" id="modePerGame" class="px-3 py-1 rounded-md text-xs font-semibold bg-indigo-600 text-white">Per Game</button>
-            <button onclick="toggleStatMode('totals')" id="modeTotals" class="px-3 py-1 rounded-md text-xs font-semibold text-gray-400 hover:text-white">Season Totals</button>
-          </div>
-          <button onclick="triggerDataRefresh()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 text-xs px-3 py-2 rounded-lg flex items-center gap-1.5 transition-all">
-            <i class="fa-solid fa-rotate-right text-indigo-400"></i>
-            <span>Recalculate</span>
-          </button>
+          <p class="text-sm text-gray-400 mt-1">Authenticate with Yahoo to sync real data. Displaying mock data for demonstration.</p>
         </div>
       </div>
 
-      <!-- Rankings & Heatmap Table -->
       <div class="glass-card rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
-        <div class="p-4 border-b border-gray-800 flex flex-wrap items-center justify-between gap-2 bg-gray-900/40">
-          <h3 class="font-bold text-gray-200 flex items-center gap-2">
-            <i class="fa-solid fa-table-cells text-indigo-400"></i>
-            <span>Projected Standings & Category Heatmap</span>
-          </h3>
-          <div class="flex items-center gap-4 text-xs">
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Category Strength</span>
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Average</span>
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span> Punt / Weakness</span>
-          </div>
-        </div>
-
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
@@ -173,7 +142,6 @@
                 <th class="p-3 text-center">ST</th>
                 <th class="p-3 text-center">BLK</th>
                 <th class="p-3 text-center">TO</th>
-                <th class="p-3 text-center">Score</th>
               </tr>
             </thead>
             <tbody id="rankingsTableBody" class="divide-y divide-gray-800/50">
@@ -182,805 +150,267 @@
           </table>
         </div>
       </div>
-
     </section>
 
-    <!-- ==================== TAB 2: TEAM DEEP DIVE ANALYSIS ==================== -->
+    <!-- ==================== TAB 2: TEAM DEEP DIVE ==================== -->
     <section id="tab-analysis" class="tab-content space-y-6 hidden">
-      
-      <!-- Team Switcher Header -->
       <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-extrabold text-xl text-white shadow-lg shadow-indigo-500/20">
-            KM
-          </div>
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-extrabold text-xl text-white shadow-lg shadow-indigo-500/20">KM</div>
           <div>
-            <div class="flex items-center gap-2">
-              <h2 id="analyzedTeamName" class="text-xl font-bold text-white">Kobee's Mamba Squad</h2>
-              <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-0.5 rounded border border-purple-500/30">Your Team</span>
-            </div>
-            <p id="analyzedTeamMeta" class="text-xs text-gray-400 mt-0.5">Projected Rank: #1 in League • Primary Strategy: Punt Turnovers & Soft Punt FT%</p>
+            <h2 id="analyzedTeamName" class="text-xl font-bold text-white">Kobee's Mamba Squad</h2>
+            <p id="analyzedTeamMeta" class="text-xs text-gray-400 mt-0.5">Projected Rank: #1 in League</p>
           </div>
         </div>
-
         <div class="flex items-center gap-3">
-          <label class="text-xs text-gray-400 font-medium">Analyze Team:</label>
-          <select id="teamSelectorForAnalysis" onchange="loadTeamAnalysis(this.value)" class="bg-gray-800 text-xs font-semibold text-white border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500">
-            <!-- Dynamically populated -->
-          </select>
+          <select id="teamSelectorForAnalysis" onchange="loadTeamAnalysis(this.value)" class="bg-gray-800 text-xs font-semibold text-white border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500"></select>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <!-- Column 1: Radar Visual Chart -->
         <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col justify-between">
-          <div>
-            <h3 class="text-sm font-bold text-gray-200 mb-1 flex items-center gap-2">
-              <i class="fa-solid fa-chart-pie text-indigo-400"></i>
-              <span>Category Profile Radar</span>
-            </h3>
-            <p class="text-xs text-gray-400 mb-4">Relative 9-category percentile strengths vs league average.</p>
-          </div>
+          <h3 class="text-sm font-bold text-gray-200 mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie text-indigo-400"></i> Category Profile Radar
+          </h3>
           <div class="relative w-full h-64 flex items-center justify-center">
             <canvas id="categoryRadarChart"></canvas>
           </div>
-          <div class="mt-4 pt-4 border-t border-gray-800 text-xs text-gray-400 flex justify-between">
-            <span>Strongest: <strong class="text-emerald-400">3PTM, PTS, AST</strong></span>
-            <span>Weakest: <strong class="text-red-400">TO, BLK</strong></span>
-          </div>
         </div>
 
-        <!-- Column 2: Advantages & Disadvantages -->
         <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
-          <h3 class="text-sm font-bold text-gray-200 flex items-center gap-2">
-            <i class="fa-solid fa-scale-balanced text-purple-400"></i>
-            <span>Core Strengths & Vulnerabilities</span>
-          </h3>
-
-          <!-- Advantages -->
-          <div class="bg-emerald-950/30 border border-emerald-500/20 rounded-xl p-3.5 space-y-2">
-            <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-              <i class="fa-solid fa-circle-check"></i> Primary Advantages
-            </div>
-            <ul id="analysisAdvantages" class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-              <!-- Dynamic -->
-            </ul>
+          <h3 class="text-sm font-bold text-gray-200">Core Strengths & Vulnerabilities</h3>
+          <div class="bg-emerald-950/30 border border-emerald-500/20 rounded-xl p-3.5">
+            <div class="text-xs font-bold text-emerald-400 uppercase flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> Advantages</div>
+            <ul id="analysisAdvantages" class="text-xs text-gray-300 mt-2 space-y-1.5 list-disc list-inside"></ul>
           </div>
-
-          <!-- Disadvantages -->
-          <div class="bg-red-950/30 border border-red-500/20 rounded-xl p-3.5 space-y-2">
-            <div class="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
-              <i class="fa-solid fa-triangle-exclamation"></i> Identified Weaknesses
-            </div>
-            <ul id="analysisDisadvantages" class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-              <!-- Dynamic -->
-            </ul>
+          <div class="bg-red-950/30 border border-red-500/20 rounded-xl p-3.5">
+            <div class="text-xs font-bold text-red-400 uppercase flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Weaknesses</div>
+            <ul id="analysisDisadvantages" class="text-xs text-gray-300 mt-2 space-y-1.5 list-disc list-inside"></ul>
           </div>
         </div>
 
-        <!-- Column 3: Recommended Actions (Trades, Drops, Target Adds) -->
         <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
-          <h3 class="text-sm font-bold text-gray-200 flex items-center gap-2">
-            <i class="fa-solid fa-chess-knight text-amber-400"></i>
-            <span>Actionable Trade & Roster Advice</span>
-          </h3>
-
-          <!-- Trade Candidates -->
-          <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-2">
-            <div class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-              <i class="fa-solid fa-right-left"></i> High-Value Trade Targets
-            </div>
-            <p id="analysisTradeTargets" class="text-xs text-gray-300 leading-relaxed">
-              <!-- Dynamic -->
-            </p>
-          </div>
-
-          <!-- Drop Candidates -->
-          <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-2">
-            <div class="text-xs font-bold text-indigo-400 flex items-center gap-1.5">
-              <i class="fa-solid fa-user-minus"></i> Cut / Drop Candidates
-            </div>
-            <p id="analysisDropCandidates" class="text-xs text-gray-300 leading-relaxed">
-              <!-- Dynamic -->
-            </p>
-          </div>
-
-          <!-- Recommended Punt Strategy -->
-          <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-1.5">
-            <div class="text-xs font-bold text-purple-400 flex items-center gap-1.5">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> Optimal Strategy Shift
-            </div>
-            <p id="analysisStrategyNote" class="text-xs text-gray-300">
-              <!-- Dynamic -->
-            </p>
-          </div>
+          <h3 class="text-sm font-bold text-gray-200">Actionable Advice</h3>
+          <div class="bg-gray-900/80 rounded-xl p-3.5"><strong class="text-amber-400 text-xs">Trade Targets:</strong><p id="analysisTradeTargets" class="text-xs text-gray-300 mt-1"></p></div>
+          <div class="bg-gray-900/80 rounded-xl p-3.5"><strong class="text-indigo-400 text-xs">Drop Candidates:</strong><p id="analysisDropCandidates" class="text-xs text-gray-300 mt-1"></p></div>
         </div>
-
       </div>
-
     </section>
 
-    <!-- ==================== TAB 3: DAILY TOP 10 WAIVER PICKUP ENGINE ==================== -->
+    <!-- ==================== TAB 3: WAIVER WIRE ==================== -->
     <section id="tab-waiver" class="tab-content space-y-6 hidden">
-      
-      <!-- HKT Cutoff & Status Banner -->
-      <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-amber-950/20 via-gray-900 to-purple-950/20">
-        <div class="flex items-center gap-4">
-          <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl text-amber-400">
-            <i class="fa-solid fa-stopwatch text-2xl"></i>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h2 class="text-lg font-bold text-white">Daily Waiver Engine (HKT 3:30 PM Target)</h2>
-              <span class="bg-amber-500/20 text-amber-300 text-xs px-2 py-0.5 rounded font-mono font-bold">Post-Game Sync Active</span>
-            </div>
-            <p class="text-xs text-gray-400 mt-0.5">Scans completed NBA games daily and updates top free agents before the 3:30 PM Hong Kong processing deadline.</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <!-- Category Quick Filter -->
-          <select id="waiverCategoryFilter" onchange="filterWaivers(this.value)" class="bg-gray-800 text-xs font-semibold text-white border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:border-amber-500">
-            <option value="ALL">All Categories Need</option>
-            <option value="3PM">Need 3PT Shooting</option>
-            <option value="AST">Need Assists / Playmaking</option>
-            <option value="DEF">Need Steals / Blocks</option>
-            <option value="REB">Need Rebounds</option>
-            <option value="B2B">Streamer (4-Game Week / B2B)</option>
-          </select>
-
-          <button onclick="simulatePostGameScan()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-3.5 py-2 rounded-lg transition-all shadow-lg shadow-amber-600/20 flex items-center gap-1.5">
-            <i class="fa-solid fa-rotate"></i>
-            <span>Scan Games Now</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Top 10 Waiver List -->
       <div class="glass-card rounded-2xl border border-gray-800 overflow-hidden">
         <div class="p-4 border-b border-gray-800 flex items-center justify-between bg-gray-900/60">
-          <h3 class="font-bold text-gray-200 flex items-center gap-2 text-sm">
-            <i class="fa-solid fa-ranking-star text-amber-400"></i>
-            <span>Top 10 Recommended Free Agent & Waiver Claims</span>
-          </h3>
-          <span class="text-xs text-gray-400">Based on recent 7-day usage, minutes expansion, and expert trends</span>
+          <h3 class="font-bold text-gray-200 text-sm">Top 10 Recommended Pickups</h3>
         </div>
-
-        <div class="divide-y divide-gray-800/80" id="waiverListContainer">
-          <!-- Dynamically populated Top 10 cards -->
-        </div>
+        <div class="divide-y divide-gray-800/80" id="waiverListContainer"></div>
       </div>
-
     </section>
 
-    <!-- ==================== TAB 4: DAILY EXPERT INTEL & TRENDS ==================== -->
+    <!-- ==================== TAB 4: ARTICLES ==================== -->
     <section id="tab-articles" class="tab-content space-y-6 hidden">
-      
-      <!-- Header Banner -->
-      <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2">
-            <h2 class="text-lg font-bold text-white">Daily NBA Expert Intel & Trend Aggregator</h2>
-            <span class="bg-indigo-500/20 text-indigo-300 text-xs px-2 py-0.5 rounded border border-indigo-500/30">Rotoworld / Yahoo / RotoBaller Auto-Parsed</span>
-          </div>
-          <p class="text-xs text-gray-400 mt-1">Aggregated insights, injury opportunity alerts, and rotation shifts synthesized for daily waiver strategy.</p>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <input type="text" id="articleSearchInput" onkeyup="filterArticles()" placeholder="Search player or team..." class="bg-gray-800 text-xs text-white border border-gray-700 rounded-lg px-3 py-2 w-48 focus:outline-none focus:border-indigo-500">
-        </div>
-      </div>
-
-      <!-- Articles Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="articlesGrid">
-        <!-- Dynamically populated -->
-      </div>
-
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="articlesGrid"></div>
     </section>
-
   </main>
 
-  <!-- FOOTER -->
-  <footer class="glass-card border-t border-gray-800 py-4 px-4 lg:px-8 mt-8 text-center text-xs text-gray-500">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <p>© 2026 Fantasy NBA Command Center • Built for <span class="text-purple-400 font-mono">kobee2321@yahoo.com</span></p>
-      <div class="flex items-center gap-4">
-        <span>Daily HKT 3:30 PM Cutoff Sync: <strong class="text-emerald-400">ON</strong></span>
-        <span>•</span>
-        <button onclick="openYahooAuthModal()" class="text-gray-400 hover:text-white underline">Yahoo OAuth API Config</button>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ==================== YAHOO AUTH & API CONFIG MODAL ==================== -->
+  <!-- ==================== YAHOO OAUTH REDIRECT MODAL ==================== -->
   <div id="yahooAuthModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl relative">
-      
-      <button onclick="closeYahooAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <button onclick="closeYahooAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
 
       <div class="flex items-center space-x-3">
-        <div class="bg-purple-600 p-3 rounded-xl text-white">
-          <i class="fa-brands fa-yahoo text-2xl"></i>
-        </div>
+        <div class="bg-purple-600 p-3 rounded-xl text-white"><i class="fa-brands fa-yahoo text-2xl"></i></div>
         <div>
-          <h3 class="text-lg font-bold text-white">Yahoo Fantasy API Sync</h3>
-          <p class="text-xs text-gray-400">Authenticate user account: <strong class="text-purple-300">kobee2321@yahoo.com</strong></p>
+          <h3 class="text-lg font-bold text-white">Sign In with Yahoo</h3>
+          <p class="text-xs text-gray-400">OAuth 2.0 Secure Authorization</p>
         </div>
       </div>
 
       <div class="bg-gray-800/80 border border-gray-700/80 rounded-xl p-4 text-xs space-y-2">
         <div class="font-semibold text-gray-200 flex items-center gap-1.5">
-          <i class="fa-solid fa-shield-halved text-emerald-400"></i> OAuth 2.0 Direct Connection
+          <i class="fa-solid fa-shield-halved text-emerald-400"></i> Official Yahoo Consent
         </div>
         <p class="text-gray-400 leading-relaxed">
-          Log in with your Yahoo account to automatically import your 3 actual fantasy leagues, current rosters, opponent match-ups, and live free agent pools.
+          You are about to be redirected to the official Yahoo login page. Your credentials are secure. Yahoo will ask you to grant this application read-only access to your Fantasy Sports data.
         </p>
       </div>
 
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs font-semibold text-gray-300 mb-1">Yahoo Account ID:</label>
-          <input type="text" id="inputYahooEmail" value="kobee2321@yahoo.com" readonly class="w-full bg-gray-950 text-xs text-purple-300 border border-gray-800 rounded-lg p-2.5 font-mono focus:outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-gray-300 mb-1">Yahoo Developer App Client ID (Optional Custom ID):</label>
-          <input type="text" id="inputClientId" placeholder="e.g. dj0yJmk9eFpBcG... (Leave blank for default app)" class="w-full bg-gray-800 text-xs text-white border border-gray-700 rounded-lg p-2.5 focus:outline-none focus:border-purple-500 font-mono">
-        </div>
-      </div>
-
-      <!-- Live Sync Console Output -->
-      <div id="authConsole" class="bg-black/90 border border-gray-800 rounded-xl p-3 text-[11px] font-mono space-y-1 text-gray-400 hidden max-h-32 overflow-y-auto">
-        <div class="text-emerald-400">> Initiating OAuth 2.0 handshake...</div>
-      </div>
-
       <div class="flex items-center gap-3 pt-2">
-        <button onclick="executeYahooLogin()" id="btnLoginSubmit" class="flex-1 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-3 rounded-xl transition-all shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2">
-          <i class="fa-brands fa-yahoo"></i>
-          <span>Authenticate & Sync 3 Leagues</span>
-        </button>
-        <button onclick="closeYahooAuthModal()" class="px-4 py-3 bg-gray-800 hover:bg-gray-700 text-gray-300 font-semibold text-xs rounded-xl transition-all">
-          Cancel
+        <button onclick="redirectToYahoo()" class="flex-1 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-3 rounded-xl transition-all shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2">
+          <i class="fa-brands fa-yahoo"></i> <span>Continue to Yahoo Auth</span>
         </button>
       </div>
-
-      <p class="text-[10px] text-gray-500 text-center">
-        Status: Secure token cached for 2026-2027 NBA Season • Daily auto-refresh enabled.
-      </p>
-
     </div>
   </div>
 
   <!-- CUSTOM NOTIFICATION MODAL -->
   <div id="customModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card bg-gray-900 border border-gray-700 rounded-2xl max-w-sm w-full p-5 space-y-4 shadow-2xl text-center">
-      <div id="customModalIcon" class="text-3xl text-indigo-400">
-        <i class="fa-solid fa-circle-check"></i>
-      </div>
-      <h3 id="customModalTitle" class="text-base font-bold text-white">Action Complete</h3>
-      <p id="customModalMessage" class="text-xs text-gray-300 leading-relaxed"></p>
-      <button onclick="closeCustomModal()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs py-2.5 rounded-xl transition-all">
-        Got it
-      </button>
+      <div id="customModalIcon" class="text-3xl text-indigo-400"><i class="fa-solid fa-circle-info"></i></div>
+      <h3 id="customModalTitle" class="text-base font-bold text-white"></h3>
+      <p id="customModalMessage" class="text-xs text-gray-300 leading-relaxed whitespace-pre-line"></p>
+      <button onclick="closeCustomModal()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs py-2.5 rounded-xl transition-all">Got it</button>
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script>
-    /* ==================== MOCK & DATA STRUCTURES ==================== */
-    let currentStatMode = 'perGame'; // 'perGame' or 'totals'
+    // OAuth Constants
+    const YAHOO_CLIENT_ID = "dj0yJmk9SlhjdzV6SEZjeWdmJmQ9WVdrOVpVMDNjSEpUZEhBbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTdh";
+    const REDIRECT_URI = "https://kobee2321.github.io/fantasy-basketball-app/";
+
+    // Dummy Data Setup
     let activeLeagueKey = 'league1';
     let chartInstance = null;
 
-    // League Datasets
     const leaguesData = {
       league1: {
         name: "Mamba Masters 9-Cat (12T H2H)",
-        type: "9-Cat H2H",
-        userTeamIndex: 0,
         teams: [
-          { name: "Kobee's Mamba Squad", record: "126-54-0", fg: ".485", ft: ".792", tpm: "13.4", pts: "118.5", reb: "44.2", ast: "28.1", st: "8.4", blk: "5.6", to: "13.8", score: 8.8, isUser: true },
-          { name: "Jokic Triple-Double Inc", record: "115-65-0", fg: ".512", ft: ".810", tpm: "10.2", pts: "114.2", reb: "47.8", ast: "29.5", st: "7.1", blk: "4.8", to: "12.1", score: 8.2, isUser: false },
-          { name: "Curry Flurry Express", record: "108-72-0", fg: ".462", ft: ".885", tpm: "16.8", pts: "121.0", reb: "39.5", ast: "24.6", st: "7.8", blk: "3.9", to: "11.5", score: 7.6, isUser: false },
-          { name: "Giannis FreakShow", record: "102-78-0", fg: ".535", ft: ".685", tpm: "8.5", pts: "116.8", reb: "49.1", ast: "23.2", st: "8.1", blk: "6.8", to: "14.2", score: 7.1, isUser: false },
-          { name: "Wembanyama Block Party", record: "98-82-0", fg: ".471", ft: ".802", tpm: "11.8", pts: "110.4", reb: "45.6", ast: "22.0", st: "8.9", blk: "9.2", to: "13.0", score: 6.9, isUser: false },
-          { name: "Boston Celtics Dynasty", record: "91-89-0", fg: ".478", ft: ".820", tpm: "14.1", pts: "113.2", reb: "42.1", ast: "25.0", st: "6.9", blk: "4.5", to: "11.8", score: 6.2, isUser: false },
-          { name: "SGA Free Throw Merchants", record: "88-92-0", fg: ".489", ft: ".862", tpm: "10.5", pts: "112.0", reb: "40.8", ast: "24.1", st: "9.1", blk: "5.0", to: "12.4", score: 5.8, isUser: false },
-          { name: "Haliburton Assist Kings", record: "82-98-0", fg: ".475", ft: ".830", tpm: "12.9", pts: "109.8", reb: "38.9", ast: "31.2", st: "7.6", blk: "3.8", to: "10.9", score: 5.1, isUser: false },
-          { name: "Ant-Man Flying High", record: "79-101-0", fg: ".458", ft: ".805", tpm: "13.0", pts: "111.5", reb: "41.2", ast: "21.8", st: "7.2", blk: "4.1", to: "13.5", score: 4.4, isUser: false },
-          { name: "Luka Magic Triple Threat", record: "75-105-0", fg: ".468", ft: ".780", tpm: "13.8", pts: "117.0", reb: "43.0", ast: "27.5", st: "6.8", blk: "3.5", to: "15.2", score: 4.0, isUser: false },
-          { name: "Process Trusters PHI", record: "68-112-0", fg: ".460", ft: ".835", tpm: "11.2", pts: "107.5", reb: "41.5", ast: "21.0", st: "6.5", blk: "5.8", to: "13.1", score: 3.2, isUser: false },
-          { name: "Rebuild Tanking Squad", record: "48-132-0", fg: ".442", ft: ".750", tpm: "9.5", pts: "102.1", reb: "37.8", ast: "19.5", st: "5.9", blk: "3.2", to: "14.8", score: 1.9, isUser: false }
-        ]
-      },
-      league2: {
-        name: "Ballers Points League (10T Points)",
-        type: "Points League",
-        userTeamIndex: 0,
-        teams: [
-          { name: "Kobee's Mamba Squad", record: "18-2-0", fg: "-", ft: "-", tpm: "-", pts: "1,450 ppg", reb: "-", ast: "-", st: "-", blk: "-", to: "-", score: 9.5, isUser: true },
-          { name: "Triple Double Machine", record: "16-4-0", fg: "-", ft: "-", tpm: "-", pts: "1,410 ppg", reb: "-", ast: "-", st: "-", blk: "-", to: "-", score: 8.9, isUser: false },
-          { name: "Greek God Power", record: "14-6-0", fg: "-", ft: "-", tpm: "-", pts: "1,385 ppg", reb: "-", ast: "-", st: "-", blk: "-", to: "-", score: 8.1, isUser: false },
-          { name: "Splash Brothers", record: "12-8-0", fg: "-", ft: "-", tpm: "-", pts: "1,340 ppg", reb: "-", ast: "-", st: "-", blk: "-", to: "-", score: 7.2, isUser: false },
-          { name: "SGA MVP Quest", record: "11-9-0", fg: "-", ft: "-", tpm: "-", pts: "1,325 ppg", reb: "-", ast: "-", st: "-", blk: "-", to: "-", score: 6.8, isUser: false }
-        ]
-      },
-      league3: {
-        name: "Deep Dynasty 9-Cat (14T H2H)",
-        type: "9-Cat H2H",
-        userTeamIndex: 0,
-        teams: [
-          { name: "Kobee's Mamba Squad", record: "110-70-0", fg: ".479", ft: ".812", tpm: "12.1", pts: "112.4", reb: "43.1", ast: "26.8", st: "8.1", blk: "5.1", to: "12.5", score: 8.0, isUser: true },
-          { name: "Dynasty Dominators", record: "118-62-0", fg: ".495", ft: ".830", tpm: "11.5", pts: "115.0", reb: "45.0", ast: "27.0", st: "7.9", blk: "6.0", to: "12.0", score: 8.5, isUser: false }
+          { name: "Kobee's Mamba Squad", record: "126-54", fg: ".485", ft: ".792", tpm: "13.4", pts: "118.5", reb: "44.2", ast: "28.1", st: "8.4", blk: "5.6", to: "13.8", isUser: true },
+          { name: "Jokic Triple-Double Inc", record: "115-65", fg: ".512", ft: ".810", tpm: "10.2", pts: "114.2", reb: "47.8", ast: "29.5", st: "7.1", blk: "4.8", to: "12.1", isUser: false }
         ]
       }
     };
 
-    // Detailed Team Analyses for Tab 2
     const teamAnalyses = {
       "Kobee's Mamba Squad": {
-        meta: "Projected Rank: #1 in League • Strategy: Punt Turnovers & Soft Punt FT%",
-        radar: [88, 65, 95, 96, 78, 89, 82, 60, 35], // FG, FT, 3PM, PTS, REB, AST, STL, BLK, TO
-        advantages: [
-          "<strong>Dominant Scoring & 3PT Output:</strong> Led by elite high-volume shooters (3PM: 13.4/gm, ranked #2).",
-          "<strong>High Assist Rate:</strong> Top tier playmaking with 28.1 AST/gm.",
-          "<strong>Steals Efficiency:</strong> Strong perimeter defense with 8.4 ST/gm."
-        ],
-        disadvantages: [
-          "<strong>Heavy Turnover Load:</strong> Averaging 13.8 TO/gm due to heavy guard usage.",
-          "<strong>Middle-of-the-pack Blocks:</strong> Dependent on 1-2 primary rim protectors."
-        ],
-        tradeTargets: "Target a low-turnover center like <strong>Jarrett Allen</strong> or <strong>Myles Turner</strong> to solidify BLK without hurting FG%.",
-        dropCandidates: "End-of-bench guards with high TO rate and low minutes (<22 mpg).",
-        strategyNote: "Lean heavily into <strong>PTS + 3PM + AST + ST + FG%</strong>. You can safely punt Turnovers in most weekly H2H matchups."
-      },
-      "Jokic Triple-Double Inc": {
-        meta: "Projected Rank: #2 in League • Strategy: Elite Rebounds & Assists",
-        radar: [95, 82, 60, 85, 96, 98, 70, 52, 50],
-        advantages: [
-          "Unrivaled Assist and Rebound total from center position.",
-          "High overall team Field Goal % (.512)."
-        ],
-        disadvantages: [
-          "Below average 3-Point Volume (10.2 per game).",
-          "Low total team block output."
-        ],
-        tradeTargets: "Trade excess assists for specialized 3PT shooters.",
-        dropCandidates: "Low efficiency wings.",
-        strategyNote: "Punt 3PTM or Blocks to secure 6-3 weekly victories."
+        radar: [88, 65, 95, 96, 78, 89, 82, 60, 35],
+        advantages: ["Elite Scoring", "High Assists"],
+        disadvantages: ["High Turnovers", "Average Blocks"],
+        tradeTargets: "Myles Turner, Jarrett Allen",
+        dropCandidates: "End-of-bench guards with high TO rate."
       }
     };
 
-    // Waiver Wire Items for Tab 3
     const waiverItems = [
-      { id: 1, name: "Tari Eason", team: "HOU - SF/PF", rostered: "48%", status: "HOT ADD", cats: "STL / BLK / REB", stats: "14.2 PTS, 7.8 REB, 2.1 STL, 1.2 BLK (Last 7 Days)", note: "Expanded 32 mins with starters in injury protocol. Elite 9-cat stock engine.", catTag: "DEF" },
-      { id: 2, name: "Tre Jones", team: "SAS - PG", rostered: "36%", status: "ASSIST STREAM", cats: "AST / FG% / ST", stats: "11.5 PTS, 8.4 AST, 1.8 STL, 54% FG", note: "Starting PG role locked in for upcoming 4-game week. Excellent low-turnover passer.", catTag: "AST" },
-      { id: 3, name: "Sam Hauser", team: "BOS - SG/SF", rostered: "28%", status: "3PT SPECIALIST", cats: "3PM / FT%", stats: "13.8 PTS, 3.8 3PM, 91% FT", note: "Averaging 9.2 three-point attempts over last 4 games. Ideal streamer for 3PM.", catTag: "3PM" },
-      { id: 4, name: "Nick Richards", team: "CHA - C", rostered: "41%", status: "REB / BLK", cats: "REB / BLK / FG%", stats: "10.4 PTS, 9.6 REB, 1.9 BLK, 64% FG", note: "Starting at C while Williams is out. High efficiency double-double threat.", catTag: "REB" },
-      { id: 5, name: "Ayo Dosunmu", team: "CHI - PG/SG", rostered: "39%", status: "MINUTES BOOST", cats: "PTS / AST / ST", stats: "16.1 PTS, 5.2 AST, 1.4 STL", note: "Played 36+ minutes in 3 straight games. High fantasy usage candidate.", catTag: "AST" },
-      { id: 6, name: "Corey Kispert", team: "WAS - SG/SF", rostered: "22%", status: "STREAMER B2B", cats: "3PM / PTS", stats: "15.0 PTS, 3.2 3PM, 48% FG", note: "Favorable schedule with Friday/Saturday Back-to-Back games.", catTag: "B2B" },
-      { id: 7, name: "Payton Pritchard", team: "BOS - PG", rostered: "31%", status: "SPARK PLUG", cats: "3PM / AST / FT%", stats: "12.8 PTS, 2.8 3PM, 4.2 AST", note: "High bench usage and consistent scoring spurts in fantasy points & 9-cat.", catTag: "3PM" },
-      { id: 8, name: "Scotty Pippen Jr.", team: "MEM - PG", rostered: "25%", status: "STOCKS / AST", cats: "STL / AST / PTS", stats: "11.2 PTS, 5.8 AST, 1.9 STL", note: "Proving high steals rate in 24+ minutes off the bench.", catTag: "DEF" },
-      { id: 9, name: "Goga Bitadze", team: "ORL - C", rostered: "19%", status: "BLOCK STREAMER", cats: "BLK / REB / FG%", stats: "7.8 PTS, 7.1 REB, 2.1 BLK", note: "Solid defensive big for teams needing emergency block & rebound streamer.", catTag: "DEF" },
-      { id: 10, name: "De'Andre Hunter", team: "ATL - SF/PF", rostered: "45%", status: "SCORING ADD", cats: "PTS / 3PM / FT%", stats: "16.5 PTS, 2.2 3PM, 85% FT", note: "High scoring floor off the bench with guaranteed 28+ minutes.", catTag: "3PM" }
+      { id: 1, name: "Tari Eason", team: "HOU", rostered: "48%", stats: "14.2 PTS, 7.8 REB, 2.1 STL", note: "Elite 9-cat stock engine." },
+      { id: 2, name: "Tre Jones", team: "SAS", rostered: "36%", stats: "11.5 PTS, 8.4 AST, 1.8 STL", note: "Starting PG role locked in." }
     ];
 
-    // Expert Intel Feed for Tab 4
-    const expertArticles = [
-      {
-        source: "Rotoworld Fantasy Wire",
-        title: "Houston Rotation Shift: Tari Eason's Breakdown & 9-Cat Upside",
-        time: "1 hour ago",
-        tags: ["BREAKOUT", "STOCKS"],
-        summary: "Eason has seen a bump from 22 to 31 minutes per game over the last week. His steal rate (3.4%) and block rate (2.8%) make him a top-40 player in category leagues over the past 7 days."
-      },
-      {
-        source: "Yahoo Sports NBA Expert Corner",
-        title: "Daily Waiver Targets Before the 3:30 PM HKT Cutoff",
-        time: "3 hours ago",
-        tags: ["WAIVER ENGINE", "HKT TIMING"],
-        summary: "With multiple teams playing back-to-back slates, targeting Tre Jones and Sam Hauser prior to afternoon waiver resolution provides the highest expected value for category matchups."
-      },
-      {
-        source: "RotoBaller NBA Analysis",
-        title: "Injury Opportunity Alert: Charlotte Center Minutes",
-        time: "5 hours ago",
-        tags: ["INJURY UPDATE", "REBOUNDS"],
-        summary: "Nick Richards is projected for 30+ minutes per night over the next 2 weeks. His field-goal percentage and block output make him an essential pick-up in all 12-team leagues."
-      },
-      {
-        source: "FantasyPros Daily Trend Line",
-        title: "Punt Strategy Guide: Maximizing 3PT Volume & Assists",
-        time: "8 hours ago",
-        tags: ["PUNT STRATEGY", "ADVANCED"],
-        summary: "Teams punting turnovers can aggressively add guard heavy waiver options without suffering the downside penalty of 4+ TO per night."
-      }
-    ];
-
-    /* ==================== INITIALIZATION & RENDER FUNCTIONS ==================== */
     window.addEventListener('DOMContentLoaded', () => {
+      // 1. Check if Yahoo redirected back with an Authorization Code
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('code')) {
+        const authCode = urlParams.get('code');
+        
+        // Show success modal to user
+        showCustomModal(
+          "Authorization Successful!",
+          "Yahoo returned a secure Auth Code:\n\n" + authCode.substring(0, 15) + "...\n\nBecause this is a static frontend, the next technical step is sending this code to a backend server (Node.js) to retrieve the Access Token and pull live data."
+        );
+        
+        // Clean up the URL to hide the long code
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
       startHktCountdown();
       renderRankingsTable();
       populateTeamAnalysisDropdown();
       loadTeamAnalysis("Kobee's Mamba Squad");
-      renderWaivers('ALL');
-      renderArticles();
+      renderWaivers();
     });
 
-    // 1. Render Rankings & Heatmap
+    // Renders
     function renderRankingsTable() {
       const tbody = document.getElementById('rankingsTableBody');
-      const league = leaguesData[activeLeagueKey];
-      document.getElementById('leagueTitle').innerText = league.name;
-      
       tbody.innerHTML = '';
-
-      league.teams.forEach((team, idx) => {
-        const isUser = team.isUser;
-        const row = document.createElement('tr');
-        row.className = isUser 
-          ? "bg-indigo-950/40 border-l-4 border-indigo-500 font-semibold text-gray-100" 
-          : "hover:bg-gray-800/40 transition-colors text-gray-300";
-
-        // Category Cell Heatmap Styling
-        const fgHeat = getHeatClass(parseFloat(team.fg), 0.490, 0.465);
-        const ftHeat = getHeatClass(parseFloat(team.ft), 0.820, 0.780);
-        const tpmHeat = getHeatClass(parseFloat(team.tpm), 13.0, 10.5);
-        const ptsHeat = getHeatClass(parseFloat(team.pts), 115.0, 108.0);
-        const rebHeat = getHeatClass(parseFloat(team.reb), 44.0, 40.0);
-        const astHeat = getHeatClass(parseFloat(team.ast), 26.0, 22.0);
-        const stHeat = getHeatClass(parseFloat(team.st), 8.0, 6.8);
-        const blkHeat = getHeatClass(parseFloat(team.blk), 5.5, 4.0);
-        const toHeat = getHeatClass(20 - parseFloat(team.to), 20 - 12.0, 20 - 14.0); // Inverse for TO
-
-        row.innerHTML = `
-          <td class="p-3 text-center font-bold font-mono ${idx === 0 ? 'text-amber-400' : 'text-gray-400'}">#${idx + 1}</td>
-          <td class="p-3 flex items-center gap-2">
-            <span class="font-bold ${isUser ? 'text-indigo-300' : 'text-gray-200'}">${team.name}</span>
-            ${isUser ? '<span class="bg-indigo-500/20 text-indigo-300 text-[10px] px-1.5 py-0.5 rounded font-bold border border-indigo-500/30">YOU</span>' : ''}
-          </td>
-          <td class="p-3 text-center font-mono text-gray-300">${team.record}</td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${fgHeat}">${team.fg}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${ftHeat}">${team.ft}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${tpmHeat}">${team.tpm}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${ptsHeat}">${team.pts}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${rebHeat}">${team.reb}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${astHeat}">${team.ast}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${stHeat}">${team.st}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${blkHeat}">${team.blk}</span></td>
-          <td class="p-3 text-center"><span class="px-2 py-1 rounded font-mono ${toHeat}">${team.to}</span></td>
-          <td class="p-3 text-center font-bold text-amber-400 font-mono text-sm">${team.score}</td>
-        `;
-
-        tbody.appendChild(row);
+      leaguesData.league1.teams.forEach((t, i) => {
+        tbody.innerHTML += `
+          <tr class="${t.isUser ? 'bg-indigo-950/40 text-gray-100 font-bold' : 'text-gray-300 hover:bg-gray-800/40'}">
+            <td class="p-3 text-center">#${i + 1}</td>
+            <td class="p-3">${t.name} ${t.isUser ? '<span class="ml-2 text-[10px] bg-indigo-500/20 text-indigo-300 px-1 rounded">YOU</span>' : ''}</td>
+            <td class="p-3 text-center">${t.record}</td>
+            <td class="p-3 text-center">${t.fg}</td>
+            <td class="p-3 text-center">${t.ft}</td>
+            <td class="p-3 text-center">${t.tpm}</td>
+            <td class="p-3 text-center">${t.pts}</td>
+            <td class="p-3 text-center">${t.reb}</td>
+            <td class="p-3 text-center">${t.ast}</td>
+            <td class="p-3 text-center">${t.st}</td>
+            <td class="p-3 text-center">${t.blk}</td>
+            <td class="p-3 text-center">${t.to}</td>
+          </tr>`;
       });
     }
 
-    function getHeatClass(val, highThresh, lowThresh) {
-      if (isNaN(val)) return '';
-      if (val >= highThresh) return 'heat-high';
-      if (val >= lowThresh) return 'heat-mid';
-      return 'heat-low';
-    }
-
-    // 2. Populate & Render Team Analysis (Tab 2)
     function populateTeamAnalysisDropdown() {
       const select = document.getElementById('teamSelectorForAnalysis');
       select.innerHTML = '';
-      const league = leaguesData[activeLeagueKey];
-      league.teams.forEach(t => {
-        const opt = document.createElement('option');
-        opt.value = t.name;
-        opt.innerText = t.name + (t.isUser ? ' (Your Team)' : '');
-        select.appendChild(opt);
-      });
+      leaguesData.league1.teams.forEach(t => select.innerHTML += `<option value="${t.name}">${t.name}</option>`);
     }
 
     function loadTeamAnalysis(teamName) {
-      const data = teamAnalyses[teamName] || {
-        meta: "League Competitor • Balanced Roster Profile",
-        radar: [70, 75, 70, 72, 70, 75, 68, 65, 60],
-        advantages: ["Solid baseline scoring across positions.", "Balanced free throw percentage."],
-        disadvantages: ["Lacks high-end ceiling in defensive categories.", "Average assist output."],
-        tradeTargets: "Explore 2-for-1 upgrades with teams in re-build mode.",
-        dropCandidates: "Streamer slot candidates.",
-        strategyNote: "Focus on winning 5-4 or 6-3 weekly matchups by streaming daily games."
-      };
-
+      const data = teamAnalyses[teamName] || teamAnalyses["Kobee's Mamba Squad"];
       document.getElementById('analyzedTeamName').innerText = teamName;
-      document.getElementById('analyzedTeamMeta').innerText = data.meta;
-
-      // Render Advantages List
-      const advUl = document.getElementById('analysisAdvantages');
-      advUl.innerHTML = data.advantages.map(a => `<li>${a}</li>`).join('');
-
-      // Render Disadvantages List
-      const disUl = document.getElementById('analysisDisadvantages');
-      disUl.innerHTML = data.disadvantages.map(d => `<li>${d}</li>`).join('');
-
+      document.getElementById('analysisAdvantages').innerHTML = data.advantages.map(a => `<li>${a}</li>`).join('');
+      document.getElementById('analysisDisadvantages').innerHTML = data.disadvantages.map(d => `<li>${d}</li>`).join('');
       document.getElementById('analysisTradeTargets').innerHTML = data.tradeTargets;
       document.getElementById('analysisDropCandidates').innerHTML = data.dropCandidates;
-      document.getElementById('analysisStrategyNote').innerHTML = data.strategyNote;
-
       renderRadarChart(data.radar);
     }
 
-    // Chart.js Radar Render
     function renderRadarChart(scores) {
       const ctx = document.getElementById('categoryRadarChart').getContext('2d');
       if (chartInstance) chartInstance.destroy();
-
       chartInstance = new Chart(ctx, {
         type: 'radar',
         data: {
           labels: ['FG%', 'FT%', '3PM', 'PTS', 'REB', 'AST', 'STL', 'BLK', 'TO'],
-          datasets: [{
-            label: 'Category Percentile',
-            data: scores,
-            backgroundColor: 'rgba(99, 102, 241, 0.25)',
-            borderColor: 'rgba(99, 102, 241, 0.9)',
-            borderWidth: 2,
-            pointBackgroundColor: '#818cf8',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: '#818cf8'
-          }]
+          datasets: [{ data: scores, backgroundColor: 'rgba(99, 102, 241, 0.25)', borderColor: 'rgba(99, 102, 241, 0.9)' }]
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            r: {
-              angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-              grid: { color: 'rgba(255, 255, 255, 0.1)' },
-              pointLabels: { color: '#9ca3af', font: { size: 10, weight: 'bold' } },
-              ticks: { display: false, min: 0, max: 100 }
-            }
-          },
-          plugins: {
-            legend: { display: false }
-          }
-        }
+        options: { scales: { r: { ticks: { display: false, min: 0, max: 100 } } }, plugins: { legend: { display: false } } }
       });
     }
 
-    // 3. Render Top 10 Waiver Engine (Tab 3)
-    function renderWaivers(categoryFilter) {
+    function renderWaivers() {
       const container = document.getElementById('waiverListContainer');
-      container.innerHTML = '';
-
-      const filtered = categoryFilter === 'ALL' 
-        ? waiverItems 
-        : waiverItems.filter(item => item.catTag === categoryFilter || categoryFilter === 'ALL');
-
-      filtered.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = "p-4 hover:bg-gray-800/30 transition-colors flex flex-col md:flex-row items-start md:items-center justify-between gap-4";
-        
-        div.innerHTML = `
-          <div class="flex items-start gap-3.5">
-            <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center font-bold text-amber-400 font-mono text-sm shrink-0">
-              #${index + 1}
-            </div>
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <h4 class="font-bold text-gray-100 text-sm">${item.name}</h4>
-                <span class="text-xs text-gray-400 font-medium">${item.team}</span>
-                <span class="bg-purple-500/20 text-purple-300 text-[10px] font-bold px-2 py-0.5 rounded border border-purple-500/30">${item.status}</span>
-                <span class="bg-gray-800 text-gray-300 text-[10px] font-mono px-2 py-0.5 rounded border border-gray-700">Rostered: ${item.rostered}</span>
-              </div>
-              <p class="text-xs text-emerald-400 font-mono mt-1"><i class="fa-solid fa-chart-line text-[10px] mr-1"></i>${item.stats}</p>
-              <p class="text-xs text-gray-400 mt-1">${item.note}</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3 self-end md:self-auto shrink-0">
-            <div class="text-right hidden sm:block">
-              <span class="text-[10px] uppercase text-gray-500 font-semibold block">Primary Boost</span>
-              <span class="text-xs font-bold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 inline-block mt-0.5">${item.cats}</span>
-            </div>
-            <button onclick="addWaiverNote('${item.name.replace(/'/g, "\\'")}')" class="bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 font-semibold text-xs px-3 py-1.5 rounded-lg transition-all flex items-center gap-1">
-              <i class="fa-solid fa-plus text-[10px]"></i> Claim Priority
-            </button>
-          </div>
-        `;
-
-        container.appendChild(div);
-      });
+      container.innerHTML = waiverItems.map((item, index) => `
+        <div class="p-4 hover:bg-gray-800/30 flex items-center justify-between gap-4">
+          <div><h4 class="font-bold text-gray-100 text-sm">#${index+1} ${item.name} (${item.team})</h4><p class="text-xs text-emerald-400 mt-1">${item.stats}</p><p class="text-xs text-gray-400 mt-1">${item.note}</p></div>
+        </div>`).join('');
     }
 
-    function filterWaivers(val) {
-      renderWaivers(val);
-    }
-
-    function simulatePostGameScan() {
-      showCustomModal(
-        "Post-Game Scan Complete",
-        "Scanned all completed NBA games up to HKT 1:12 PM. Updated player usage, minute spikes, and category trends for today's 3:30 PM HKT waiver processing!"
-      );
-      renderWaivers('ALL');
-    }
-
-    function addWaiverNote(playerName) {
-      showCustomModal(
-        "Claim Added to Target Queue",
-        playerName + " has been tagged as your #1 waiver claim priority for the HKT 3:30 PM cutoff!"
-      );
-    }
-
-    // 4. Render Expert Intel (Tab 4)
-    function renderArticles() {
-      const grid = document.getElementById('articlesGrid');
-      grid.innerHTML = '';
-
-      expertArticles.forEach(art => {
-        const div = document.createElement('div');
-        div.className = "glass-card rounded-2xl p-5 border border-gray-800 space-y-3 hover:border-indigo-500/40 transition-all";
-        
-        const tagsHtml = art.tags.map(t => `<span class="bg-gray-800 text-gray-300 text-[10px] font-bold px-2 py-0.5 rounded border border-gray-700">${t}</span>`).join(' ');
-
-        div.innerHTML = `
-          <div class="flex items-center justify-between text-xs text-gray-400">
-            <span class="text-indigo-400 font-semibold flex items-center gap-1.5"><i class="fa-solid fa-newspaper"></i>${art.source}</span>
-            <span class="font-mono text-[11px]">${art.time}</span>
-          </div>
-          <h4 class="font-bold text-gray-100 text-sm leading-snug">${art.title}</h4>
-          <p class="text-xs text-gray-300 leading-relaxed">${art.summary}</p>
-          <div class="pt-2 flex items-center justify-between border-t border-gray-800/80">
-            <div class="flex items-center gap-1.5">${tagsHtml}</div>
-            <button onclick="readArticleFull('${art.title.replace(/'/g, "\\'")}')" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Read Summary &rarr;</button>
-          </div>
-        `;
-
-        grid.appendChild(div);
-      });
-    }
-
-    function filterArticles() {
-      const q = document.getElementById('articleSearchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('#articlesGrid > div');
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(q) ? 'block' : 'none';
-      });
-    }
-
-    function readArticleFull(title) {
-      showCustomModal("Expert Analysis Summary", title + "\n\nRecommendation: Recommendation confirmed for HKT waiver pick-ups.");
-    }
-
-    /* ==================== UTILITY & TAB SWITCHING ==================== */
+    // Tabs
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.getElementById(tabId).classList.remove('hidden');
-
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/20');
-        btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-800/60');
+        btn.classList.add('text-gray-400');
       });
-
-      const activeBtn = document.getElementById('btn-' + tabId);
-      activeBtn.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-800/60');
-      activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/20');
+      document.getElementById('btn-' + tabId).classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/20');
     }
 
-    function switchLeague(leagueKey) {
-      activeLeagueKey = leagueKey;
-      renderRankingsTable();
-      populateTeamAnalysisDropdown();
-      const firstTeam = leaguesData[leagueKey].teams[0].name;
-      loadTeamAnalysis(firstTeam);
-      
-      showCustomModal(
-        "League Switched",
-        "Now analyzing active dataset for: " + leaguesData[leagueKey].name
-      );
-    }
-
-    function toggleStatMode(mode) {
-      currentStatMode = mode;
-      document.getElementById('modePerGame').className = mode === 'perGame' 
-        ? 'px-3 py-1 rounded-md text-xs font-semibold bg-indigo-600 text-white' 
-        : 'px-3 py-1 rounded-md text-xs font-semibold text-gray-400 hover:text-white';
-      
-      document.getElementById('modeTotals').className = mode === 'totals' 
-        ? 'px-3 py-1 rounded-md text-xs font-semibold bg-indigo-600 text-white' 
-        : 'px-3 py-1 rounded-md text-xs font-semibold text-gray-400 hover:text-white';
-
-      renderRankingsTable();
-    }
-
-    function triggerDataRefresh() {
-      showCustomModal(
-        "Data Recalculated",
-        "Pre-season projections, 9-cat Z-scores, and team rankings recalculated using latest expert projections!"
-      );
-    }
-
-    /* ==================== LIVE HKT COUNTDOWN TIMER ==================== */
+    // Clock
     function startHktCountdown() {
-      function updateClock() {
+      setInterval(() => {
         const now = new Date();
-        
-        // Target HKT 3:30 PM (15:30)
         let target = new Date();
         target.setHours(15, 30, 0, 0);
-
-        if (now > target) {
-          target.setDate(target.getDate() + 1);
-        }
-
+        if (now > target) target.setDate(target.getDate() + 1);
         const diff = target - now;
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
         document.getElementById('waiverCountdown').innerText = 
-          `${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-    }
-
-    /* ==================== YAHOO OAUTH MODAL LOGIC ==================== */
-    function openYahooAuthModal() {
-      document.getElementById('yahooAuthModal').classList.remove('hidden');
-    }
-
-    function closeYahooAuthModal() {
-      document.getElementById('yahooAuthModal').classList.add('hidden');
-    }
-
-    function executeYahooLogin() {
-      const consoleBox = document.getElementById('authConsole');
-      const btn = document.getElementById('btnLoginSubmit');
-      
-      consoleBox.classList.remove('hidden');
-      consoleBox.innerHTML = `
-        <div class="text-purple-400">> Connecting to Yahoo OAuth 2.0 endpoint...</div>
-        <div class="text-gray-400">> Authenticating user: kobee2321@yahoo.com...</div>
-      `;
-
-      btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Syncing Data...</span>`;
-
-      setTimeout(() => {
-        consoleBox.innerHTML += `<div class="text-emerald-400">> Token granted! Fetching Fantasy NBA Leagues (Season 2026-27)...</div>`;
+          `${Math.floor(diff / 3600000).toString().padStart(2, '0')}h ${Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0')}m ${Math.floor((diff % 60000) / 1000).toString().padStart(2, '0')}s`;
       }, 1000);
-
-      setTimeout(() => {
-        consoleBox.innerHTML += `<div class="text-emerald-400">> 3 Active Leagues imported successfully! Syncing rosters & waiver pool...</div>`;
-      }, 2200);
-
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.innerHTML = `<i class="fa-solid fa-check"></i> <span>Sync Complete!</span>`;
-        document.getElementById('syncStatusText').innerText = "Live Synced: kobee2321";
-        
-        setTimeout(() => {
-          closeYahooAuthModal();
-          showCustomModal(
-            "Yahoo Fantasy Account Synced!",
-            "Successfully connected to kobee2321@yahoo.com! All 3 NBA fantasy leagues, team rosters, and waiver pools are now actively synced."
-          );
-        }, 800);
-      }, 3200);
     }
 
-    /* ==================== CUSTOM MODAL HELPERS ==================== */
+    // OAuth redirect logic
+    function openYahooAuthModal() { document.getElementById('yahooAuthModal').classList.remove('hidden'); }
+    function closeYahooAuthModal() { document.getElementById('yahooAuthModal').classList.add('hidden'); }
+    
+    function redirectToYahoo() {
+      // Constructs the proper OAuth 2.0 URL
+      const authUrl = `https://api.login.yahoo.com/oauth2/request_auth?client_id=${YAHOO_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&language=en-us`;
+      // Redirects the browser
+      window.location.href = authUrl;
+    }
+
     function showCustomModal(title, message) {
       document.getElementById('customModalTitle').innerText = title;
       document.getElementById('customModalMessage').innerText = message;
       document.getElementById('customModal').classList.remove('hidden');
     }
-
-    function closeCustomModal() {
-      document.getElementById('customModal').classList.add('hidden');
-    }
+    function closeCustomModal() { document.getElementById('customModal').classList.add('hidden'); }
   </script>
 </body>
 </html>
