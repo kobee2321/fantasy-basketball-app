@@ -4,30 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fantasy NBA Command Center | Yahoo League Analyzer</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Chart.js for Radar/Visuals -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f3f4f6; }
     .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-    .glass-card-active { background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(99, 102, 241, 0.4); }
-    .heat-high { background-color: rgba(34, 197, 94, 0.25); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .heat-mid { background-color: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.2); }
-    .heat-low { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0b0f19; }
     ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #374151; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-  <!-- TOP HEADER / NAVBAR -->
+  <!-- TOP HEADER -->
   <header class="glass-card sticky top-0 z-40 border-b border-gray-800 px-4 lg:px-8 py-3">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       
@@ -40,377 +31,251 @@
           <div>
             <div class="flex items-center space-x-2">
               <h1 class="text-lg font-bold tracking-tight text-white">Fantasy NBA Hub</h1>
-              <span class="text-xs bg-indigo-500/20 text-indigo-400 font-semibold px-2 py-0.5 rounded-full border border-indigo-500/30">Pro v2.5</span>
+              <span class="text-xs bg-indigo-500/20 text-indigo-400 font-semibold px-2 py-0.5 rounded-full border border-indigo-500/30">Pro v2.6</span>
             </div>
             <p class="text-xs text-gray-400 flex items-center gap-1.5 mt-0.5">
               <i class="fa-regular fa-envelope text-purple-400"></i>
-              <span id="userAccountDisplay" class="font-mono text-purple-300">kobee2321@yahoo.com</span>
+              <span class="font-mono text-purple-300">kobee2321@yahoo.com</span>
             </p>
           </div>
         </div>
 
-        <!-- Sync Button & OAuth Status -->
         <div class="flex items-center gap-2">
-          <button onclick="openYahooAuthModal()" class="flex items-center space-x-1.5 bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-500/40 text-xs px-3 py-1.5 rounded-lg transition-all">
-            <span class="relative flex h-2 w-2">
-              <span id="syncDotPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span id="syncDot" class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span id="syncStatusText" class="font-medium">Connect Yahoo</span>
+          <button onclick="redirectToYahoo()" class="flex items-center space-x-1.5 bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-500/40 text-xs px-3 py-1.5 rounded-lg transition-all">
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span class="font-medium">Connect Yahoo</span>
             <i class="fa-solid fa-arrows-rotate text-xs opacity-70 ml-1"></i>
           </button>
         </div>
       </div>
 
-      <!-- Center / Right: Time Sync & Active League Selector -->
-      <div class="flex items-center justify-between md:justify-end gap-4 w-full md:w-auto">
-        <div class="bg-gray-900/80 border border-gray-800 px-3 py-1.5 rounded-lg text-right hidden sm:block">
-          <div class="text-[10px] uppercase tracking-wider text-gray-400 font-medium">HKT Target (3:30 PM)</div>
-          <div class="text-xs font-mono font-bold text-amber-400 flex items-center justify-end gap-1.5">
-            <i class="fa-regular fa-clock"></i>
-            <span id="waiverCountdown">--h --m --s</span>
-          </div>
-        </div>
-
-        <div class="flex items-center space-x-2">
-          <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider hidden lg:block">League:</label>
-          <select id="leagueSelector" onchange="switchLeague(this.value)" class="bg-gray-800 text-sm font-semibold text-white border border-gray-700 rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
-            <option value="league1">🏆 Mamba Masters 9-Cat (12T H2H)</option>
-            <option value="league2">⚡ Ballers Points League (10T Points)</option>
-            <option value="league3">🔥 Deep Dynasty 9-Cat (14T H2H)</option>
-          </select>
-        </div>
+      <!-- Active League Selector -->
+      <div class="flex items-center space-x-2">
+        <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider hidden lg:block">League:</label>
+        <select id="leagueSelector" onchange="switchLeague(this.value)" class="bg-gray-800 text-sm font-semibold text-white border border-gray-700 rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 cursor-pointer">
+          <option value="league1">🏀 Yao Know What I Ming (H2H)</option>
+          <option value="league2">🔥 NBAFBHKG (H2H)</option>
+          <option value="league3">🏆 26-27 FC Fan league (Rotisserie)</option>
+        </select>
       </div>
     </div>
   </header>
 
-  <!-- NAVIGATION TABS BAR -->
+  <!-- NAVIGATION TABS -->
   <nav class="bg-gray-900/60 border-b border-gray-800/80 px-4 lg:px-8 py-2">
-    <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar">
-      <button onclick="switchTab('tab-rankings')" id="btn-tab-rankings" class="tab-btn active flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/20">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>1. Standings & Projections</span>
+    <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto">
+      <button onclick="switchTab('tab-rankings')" id="btn-tab-rankings" class="tab-btn active flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white">
+        <i class="fa-solid fa-chart-line"></i> Standings
       </button>
-      
-      <button onclick="switchTab('tab-analysis')" id="btn-tab-analysis" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-gray-400 hover:text-white hover:bg-gray-800/60">
-        <i class="fa-solid fa-magnifying-glass-chart"></i>
-        <span>2. Team Deep Dive</span>
+      <button onclick="switchTab('tab-analysis')" id="btn-tab-analysis" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white">
+        <i class="fa-solid fa-magnifying-glass-chart"></i> Team Deep Dive
       </button>
-
-      <button onclick="switchTab('tab-waiver')" id="btn-tab-waiver" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-gray-400 hover:text-white hover:bg-gray-800/60 relative">
-        <i class="fa-solid fa-fire text-amber-400"></i>
-        <span>3. Top 10 Waiver Engine</span>
-        <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-1.5 py-0.2 rounded border border-amber-500/30">HKT 3:30PM</span>
-      </button>
-
-      <button onclick="switchTab('tab-articles')" id="btn-tab-articles" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-gray-400 hover:text-white hover:bg-gray-800/60">
-        <i class="fa-solid fa-newspaper text-indigo-400"></i>
-        <span>4. Expert Intel & Trends</span>
+      <button onclick="switchTab('tab-waiver')" id="btn-tab-waiver" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white">
+        <i class="fa-solid fa-fire text-amber-400"></i> Waiver Engine
       </button>
     </div>
   </nav>
 
-  <!-- MAIN CONTENT CONTAINER -->
+  <!-- MAIN CONTENT -->
   <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 flex-1 w-full">
 
-    <!-- ==================== TAB 1: TEAM RANKINGS ==================== -->
+    <!-- TAB 1: RANKINGS -->
     <section id="tab-rankings" class="tab-content space-y-6">
-      <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2">
-            <h2 id="leagueTitle" class="text-xl font-bold text-white">Mamba Masters 9-Cat (12 Teams)</h2>
-            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">Demo Mode</span>
-          </div>
-          <p class="text-sm text-gray-400 mt-1">Authenticate with Yahoo to sync real data. Displaying mock data for demonstration.</p>
+      <div class="glass-card rounded-2xl border border-gray-800 overflow-hidden">
+        <div class="p-4 border-b border-gray-800 bg-gray-900/60 flex justify-between items-center">
+           <h2 id="leagueTitle" class="text-lg font-bold text-white">Yao Know What I Ming</h2>
+           <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/30">Week 1 - Pre-season</span>
         </div>
-      </div>
-
-      <div class="glass-card rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
+          <table class="w-full text-left text-sm border-collapse">
             <thead>
-              <tr class="bg-gray-900/80 text-gray-400 uppercase tracking-wider border-b border-gray-800 font-semibold">
-                <th class="p-3 text-center">Rank</th>
-                <th class="p-3">Team Name</th>
-                <th class="p-3 text-center">Proj Record</th>
-                <th class="p-3 text-center">FG%</th>
-                <th class="p-3 text-center">FT%</th>
-                <th class="p-3 text-center">3PTM</th>
-                <th class="p-3 text-center">PTS</th>
-                <th class="p-3 text-center">REB</th>
-                <th class="p-3 text-center">AST</th>
-                <th class="p-3 text-center">ST</th>
-                <th class="p-3 text-center">BLK</th>
-                <th class="p-3 text-center">TO</th>
+              <tr class="bg-gray-900/80 text-gray-400 uppercase tracking-wider border-b border-gray-800">
+                <th class="p-4">Team Name</th>
+                <th class="p-4 text-center">Record</th>
+                <th class="p-4 text-center">Proj. Points</th>
+                <th class="p-4 text-center">Status</th>
               </tr>
             </thead>
             <tbody id="rankingsTableBody" class="divide-y divide-gray-800/50">
-              <!-- Dynamically populated -->
+              <!-- JS Populated -->
             </tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- ==================== TAB 2: TEAM DEEP DIVE ==================== -->
+    <!-- TAB 2: ANALYSIS -->
     <section id="tab-analysis" class="tab-content space-y-6 hidden">
-      <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="glass-card rounded-2xl p-5 border border-gray-800 flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-extrabold text-xl text-white shadow-lg shadow-indigo-500/20">KM</div>
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-extrabold text-white">SHM</div>
           <div>
-            <h2 id="analyzedTeamName" class="text-xl font-bold text-white">Kobee's Mamba Squad</h2>
-            <p id="analyzedTeamMeta" class="text-xs text-gray-400 mt-0.5">Projected Rank: #1 in League</p>
+            <h2 id="analyzedTeamName" class="text-xl font-bold text-white">Shatin Happy Milan</h2>
+            <p class="text-xs text-gray-400 mt-0.5">Manager: kobee2321 • Week 1 Preparation Active</p>
           </div>
         </div>
-        <div class="flex items-center gap-3">
-          <select id="teamSelectorForAnalysis" onchange="loadTeamAnalysis(this.value)" class="bg-gray-800 text-xs font-semibold text-white border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500"></select>
-        </div>
+        <select id="teamSelectorForAnalysis" onchange="loadTeamAnalysis(this.value)" class="bg-gray-800 text-xs text-white border border-gray-700 rounded-lg px-3 py-2"></select>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="glass-card rounded-2xl p-5 border border-gray-800 flex flex-col justify-between">
-          <h3 class="text-sm font-bold text-gray-200 mb-1 flex items-center gap-2">
-            <i class="fa-solid fa-chart-pie text-indigo-400"></i> Category Profile Radar
-          </h3>
-          <div class="relative w-full h-64 flex items-center justify-center">
-            <canvas id="categoryRadarChart"></canvas>
-          </div>
+        <div class="glass-card rounded-2xl p-5 border border-gray-800">
+          <h3 class="text-sm font-bold text-gray-200 mb-4"><i class="fa-solid fa-chart-pie text-indigo-400"></i> Projected Radar</h3>
+          <div class="relative w-full h-64"><canvas id="categoryRadarChart"></canvas></div>
         </div>
-
         <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
-          <h3 class="text-sm font-bold text-gray-200">Core Strengths & Vulnerabilities</h3>
+          <h3 class="text-sm font-bold text-gray-200">Strengths & Vulnerabilities</h3>
           <div class="bg-emerald-950/30 border border-emerald-500/20 rounded-xl p-3.5">
-            <div class="text-xs font-bold text-emerald-400 uppercase flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> Advantages</div>
-            <ul id="analysisAdvantages" class="text-xs text-gray-300 mt-2 space-y-1.5 list-disc list-inside"></ul>
+            <strong class="text-emerald-400 text-xs">Advantages</strong>
+            <ul id="analysisAdvantages" class="text-xs text-gray-300 mt-2 list-disc list-inside"></ul>
           </div>
           <div class="bg-red-950/30 border border-red-500/20 rounded-xl p-3.5">
-            <div class="text-xs font-bold text-red-400 uppercase flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation"></i> Weaknesses</div>
-            <ul id="analysisDisadvantages" class="text-xs text-gray-300 mt-2 space-y-1.5 list-disc list-inside"></ul>
+            <strong class="text-red-400 text-xs">Weaknesses</strong>
+            <ul id="analysisDisadvantages" class="text-xs text-gray-300 mt-2 list-disc list-inside"></ul>
           </div>
         </div>
-
         <div class="glass-card rounded-2xl p-5 border border-gray-800 space-y-4">
           <h3 class="text-sm font-bold text-gray-200">Actionable Advice</h3>
-          <div class="bg-gray-900/80 rounded-xl p-3.5"><strong class="text-amber-400 text-xs">Trade Targets:</strong><p id="analysisTradeTargets" class="text-xs text-gray-300 mt-1"></p></div>
-          <div class="bg-gray-900/80 rounded-xl p-3.5"><strong class="text-indigo-400 text-xs">Drop Candidates:</strong><p id="analysisDropCandidates" class="text-xs text-gray-300 mt-1"></p></div>
+          <div class="bg-gray-900/80 rounded-xl p-3.5"><strong class="text-amber-400 text-xs">Targets:</strong><p id="analysisTradeTargets" class="text-xs text-gray-300 mt-1"></p></div>
+          <div class="bg-gray-900/80 rounded-xl p-3.5"><strong class="text-indigo-400 text-xs">Strategy:</strong><p id="analysisStrategy" class="text-xs text-gray-300 mt-1"></p></div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== TAB 3: WAIVER WIRE ==================== -->
+    <!-- TAB 3: WAIVERS -->
     <section id="tab-waiver" class="tab-content space-y-6 hidden">
-      <div class="glass-card rounded-2xl border border-gray-800 overflow-hidden">
-        <div class="p-4 border-b border-gray-800 flex items-center justify-between bg-gray-900/60">
-          <h3 class="font-bold text-gray-200 text-sm">Top 10 Recommended Pickups</h3>
-        </div>
-        <div class="divide-y divide-gray-800/80" id="waiverListContainer"></div>
+      <div class="glass-card rounded-2xl border border-gray-800 p-6 text-center">
+        <i class="fa-solid fa-fire text-4xl text-amber-500 mb-3"></i>
+        <h3 class="text-lg font-bold text-white">Daily Waiver Wire Engine</h3>
+        <p class="text-sm text-gray-400">Sync backend server to process live daily free agents.</p>
       </div>
     </section>
 
-    <!-- ==================== TAB 4: ARTICLES ==================== -->
-    <section id="tab-articles" class="tab-content space-y-6 hidden">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="articlesGrid"></div>
-    </section>
   </main>
-
-  <!-- ==================== YAHOO OAUTH REDIRECT MODAL ==================== -->
-  <div id="yahooAuthModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="glass-card bg-gray-900 border border-gray-700 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl relative">
-      <button onclick="closeYahooAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-
-      <div class="flex items-center space-x-3">
-        <div class="bg-purple-600 p-3 rounded-xl text-white"><i class="fa-brands fa-yahoo text-2xl"></i></div>
-        <div>
-          <h3 class="text-lg font-bold text-white">Sign In with Yahoo</h3>
-          <p class="text-xs text-gray-400">OAuth 2.0 Secure Authorization</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800/80 border border-gray-700/80 rounded-xl p-4 text-xs space-y-2">
-        <div class="font-semibold text-gray-200 flex items-center gap-1.5">
-          <i class="fa-solid fa-shield-halved text-emerald-400"></i> Official Yahoo Consent
-        </div>
-        <p class="text-gray-400 leading-relaxed">
-          You are about to be redirected to the official Yahoo login page. Your credentials are secure. Yahoo will ask you to grant this application read-only access to your Fantasy Sports data.
-        </p>
-      </div>
-
-      <div class="flex items-center gap-3 pt-2">
-        <button onclick="redirectToYahoo()" class="flex-1 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-3 rounded-xl transition-all shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2">
-          <i class="fa-brands fa-yahoo"></i> <span>Continue to Yahoo Auth</span>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- CUSTOM NOTIFICATION MODAL -->
   <div id="customModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="glass-card bg-gray-900 border border-gray-700 rounded-2xl max-w-sm w-full p-5 space-y-4 shadow-2xl text-center">
-      <div id="customModalIcon" class="text-3xl text-indigo-400"><i class="fa-solid fa-circle-info"></i></div>
+    <div class="glass-card bg-gray-900 border border-gray-700 rounded-2xl max-w-sm w-full p-5 space-y-4 text-center">
+      <div class="text-3xl text-indigo-400"><i class="fa-solid fa-circle-info"></i></div>
       <h3 id="customModalTitle" class="text-base font-bold text-white"></h3>
-      <p id="customModalMessage" class="text-xs text-gray-300 leading-relaxed whitespace-pre-line"></p>
-      <button onclick="closeCustomModal()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs py-2.5 rounded-xl transition-all">Got it</button>
+      <p id="customModalMessage" class="text-xs text-gray-300 whitespace-pre-line"></p>
+      <button onclick="document.getElementById('customModal').classList.add('hidden')" class="w-full bg-indigo-600 text-white font-semibold text-xs py-2.5 rounded-xl">Got it</button>
     </div>
   </div>
 
   <script>
-    // OAuth Constants
     const YAHOO_CLIENT_ID = "dj0yJmk9OU9pa3pJQktBUXM2JmQ9WVdrOVVXdzJabEZrTmtRbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYy";
     const REDIRECT_URI = "https://kobee2321.github.io/fantasy-basketball-app/";
 
-    // Dummy Data Setup
-    let activeLeagueKey = 'league1';
-    let chartInstance = null;
-
+    // Updated Mock Data Matching Account Screenshot exactly
     const leaguesData = {
       league1: {
-        name: "Mamba Masters 9-Cat (12T H2H)",
+        name: "Yao Know What I Ming",
         teams: [
-          { name: "Kobee's Mamba Squad", record: "126-54", fg: ".485", ft: ".792", tpm: "13.4", pts: "118.5", reb: "44.2", ast: "28.1", st: "8.4", blk: "5.6", to: "13.8", isUser: true },
-          { name: "Jokic Triple-Double Inc", record: "115-65", fg: ".512", ft: ".810", tpm: "10.2", pts: "114.2", reb: "47.8", ast: "29.5", st: "7.1", blk: "4.8", to: "12.1", isUser: false }
+          { name: "Shatin Happy Milan", record: "0-0-0", pts: "-", status: "Not started yet", isUser: true },
+          { name: "香港公牛", record: "0-0-0", pts: "-", status: "Not started yet", isUser: false }
+        ]
+      },
+      league2: {
+        name: "NBAFBHKG",
+        teams: [
+          { name: "Shatin Happy Milan", record: "0-0-0", pts: "-", status: "Not started yet", isUser: true },
+          { name: "Bigsheep", record: "0-0-0", pts: "-", status: "Not started yet", isUser: false }
+        ]
+      },
+      league3: {
+        name: "26-27 FC Fan league (Rotisserie)",
+        teams: [
+          { name: "Shatin Happy Milan", record: "Unranked", pts: "0", status: "Pre-Draft / Week 1", isUser: true }
         ]
       }
     };
 
     const teamAnalyses = {
-      "Kobee's Mamba Squad": {
-        radar: [88, 65, 95, 96, 78, 89, 82, 60, 35],
-        advantages: ["Elite Scoring", "High Assists"],
-        disadvantages: ["High Turnovers", "Average Blocks"],
-        tradeTargets: "Myles Turner, Jarrett Allen",
-        dropCandidates: "End-of-bench guards with high TO rate."
-      }
+      "Shatin Happy Milan": {
+        radar: [85, 70, 92, 95, 80, 88, 75, 60, 45],
+        advantages: ["Balanced pre-draft projections", "Strong Head-to-Head core build potential"],
+        disadvantages: ["Need to secure reliable bigs", "Turnover rates unknown until draft completion"],
+        tradeTargets: "Watch waiver wire closely post-draft.",
+        strategy: "Focus on maximizing weekly games played in H2H formats."
+      },
+      "香港公牛": { radar: [70,70,70,70,70,70,70,70,70], advantages: ["TBD"], disadvantages: ["TBD"], tradeTargets: "-", strategy: "-" },
+      "Bigsheep": { radar: [70,70,70,70,70,70,70,70,70], advantages: ["TBD"], disadvantages: ["TBD"], tradeTargets: "-", strategy: "-" }
     };
 
-    const waiverItems = [
-      { id: 1, name: "Tari Eason", team: "HOU", rostered: "48%", stats: "14.2 PTS, 7.8 REB, 2.1 STL", note: "Elite 9-cat stock engine." },
-      { id: 2, name: "Tre Jones", team: "SAS", rostered: "36%", stats: "11.5 PTS, 8.4 AST, 1.8 STL", note: "Starting PG role locked in." }
-    ];
+    let activeLeagueKey = 'league1';
+    let chartInstance = null;
 
     window.addEventListener('DOMContentLoaded', () => {
-      // 1. Check if Yahoo redirected back with an Authorization Code
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('code')) {
         const authCode = urlParams.get('code');
-        
-        // Show success modal to user
-        showCustomModal(
-          "Authorization Successful!",
-          "Yahoo returned a secure Auth Code:\n\n" + authCode.substring(0, 15) + "...\n\nBecause this is a static frontend, the next technical step is sending this code to a backend server (Node.js) to retrieve the Access Token and pull live data."
-        );
-        
-        // Clean up the URL to hide the long code
+        document.getElementById('customModalTitle').innerText = "Authorization Successful!";
+        document.getElementById('customModalMessage').innerText = "Auth Code Received:\n" + authCode.substring(0, 15) + "...\n\nYour UI is now configured for your actual teams (Shatin Happy Milan). To replace the 0-0-0 fallback stats with live points, a Node.js backend must be deployed to exchange this auth code.";
+        document.getElementById('customModal').classList.remove('hidden');
         window.history.replaceState({}, document.title, window.location.pathname);
       }
-
-      startHktCountdown();
-      renderRankingsTable();
-      populateTeamAnalysisDropdown();
-      loadTeamAnalysis("Kobee's Mamba Squad");
-      renderWaivers();
+      switchLeague('league1');
     });
 
-    // Renders
     function renderRankingsTable() {
       const tbody = document.getElementById('rankingsTableBody');
       tbody.innerHTML = '';
-      leaguesData.league1.teams.forEach((t, i) => {
+      const league = leaguesData[activeLeagueKey];
+      document.getElementById('leagueTitle').innerText = league.name;
+
+      league.teams.forEach((t) => {
         tbody.innerHTML += `
           <tr class="${t.isUser ? 'bg-indigo-950/40 text-gray-100 font-bold' : 'text-gray-300 hover:bg-gray-800/40'}">
-            <td class="p-3 text-center">#${i + 1}</td>
-            <td class="p-3">${t.name} ${t.isUser ? '<span class="ml-2 text-[10px] bg-indigo-500/20 text-indigo-300 px-1 rounded">YOU</span>' : ''}</td>
-            <td class="p-3 text-center">${t.record}</td>
-            <td class="p-3 text-center">${t.fg}</td>
-            <td class="p-3 text-center">${t.ft}</td>
-            <td class="p-3 text-center">${t.tpm}</td>
-            <td class="p-3 text-center">${t.pts}</td>
-            <td class="p-3 text-center">${t.reb}</td>
-            <td class="p-3 text-center">${t.ast}</td>
-            <td class="p-3 text-center">${t.st}</td>
-            <td class="p-3 text-center">${t.blk}</td>
-            <td class="p-3 text-center">${t.to}</td>
+            <td class="p-4 flex items-center gap-2">
+               <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs overflow-hidden"><i class="fa-solid fa-user"></i></div>
+               ${t.name} ${t.isUser ? '<span class="ml-2 text-[10px] bg-indigo-500/20 text-indigo-300 px-1 rounded border border-indigo-500/30">YOU</span>' : ''}
+            </td>
+            <td class="p-4 text-center font-mono">${t.record}</td>
+            <td class="p-4 text-center font-mono">${t.pts}</td>
+            <td class="p-4 text-center text-xs text-gray-500">${t.status}</td>
           </tr>`;
       });
     }
 
-    function populateTeamAnalysisDropdown() {
+    function switchLeague(key) {
+      activeLeagueKey = key;
+      renderRankingsTable();
       const select = document.getElementById('teamSelectorForAnalysis');
       select.innerHTML = '';
-      leaguesData.league1.teams.forEach(t => select.innerHTML += `<option value="${t.name}">${t.name}</option>`);
+      leaguesData[key].teams.forEach(t => select.innerHTML += `<option value="${t.name}">${t.name}</option>`);
+      loadTeamAnalysis("Shatin Happy Milan");
     }
 
     function loadTeamAnalysis(teamName) {
-      const data = teamAnalyses[teamName] || teamAnalyses["Kobee's Mamba Squad"];
+      const data = teamAnalyses[teamName] || teamAnalyses["Shatin Happy Milan"];
       document.getElementById('analyzedTeamName').innerText = teamName;
       document.getElementById('analysisAdvantages').innerHTML = data.advantages.map(a => `<li>${a}</li>`).join('');
       document.getElementById('analysisDisadvantages').innerHTML = data.disadvantages.map(d => `<li>${d}</li>`).join('');
-      document.getElementById('analysisTradeTargets').innerHTML = data.tradeTargets;
-      document.getElementById('analysisDropCandidates').innerHTML = data.dropCandidates;
-      renderRadarChart(data.radar);
-    }
-
-    function renderRadarChart(scores) {
+      document.getElementById('analysisTradeTargets').innerText = data.tradeTargets;
+      document.getElementById('analysisStrategy').innerText = data.strategy;
+      
       const ctx = document.getElementById('categoryRadarChart').getContext('2d');
       if (chartInstance) chartInstance.destroy();
       chartInstance = new Chart(ctx, {
         type: 'radar',
-        data: {
-          labels: ['FG%', 'FT%', '3PM', 'PTS', 'REB', 'AST', 'STL', 'BLK', 'TO'],
-          datasets: [{ data: scores, backgroundColor: 'rgba(99, 102, 241, 0.25)', borderColor: 'rgba(99, 102, 241, 0.9)' }]
-        },
+        data: { labels: ['FG%','FT%','3PM','PTS','REB','AST','STL','BLK','TO'], datasets: [{ data: data.radar, backgroundColor: 'rgba(99, 102, 241, 0.25)', borderColor: 'rgba(99, 102, 241, 0.9)' }] },
         options: { scales: { r: { ticks: { display: false, min: 0, max: 100 } } }, plugins: { legend: { display: false } } }
       });
     }
 
-    function renderWaivers() {
-      const container = document.getElementById('waiverListContainer');
-      container.innerHTML = waiverItems.map((item, index) => `
-        <div class="p-4 hover:bg-gray-800/30 flex items-center justify-between gap-4">
-          <div><h4 class="font-bold text-gray-100 text-sm">#${index+1} ${item.name} (${item.team})</h4><p class="text-xs text-emerald-400 mt-1">${item.stats}</p><p class="text-xs text-gray-400 mt-1">${item.note}</p></div>
-        </div>`).join('');
-    }
-
-    // Tabs
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.getElementById(tabId).classList.remove('hidden');
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/20');
+        btn.classList.remove('bg-indigo-600', 'text-white');
         btn.classList.add('text-gray-400');
       });
-      document.getElementById('btn-' + tabId).classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/20');
+      document.getElementById('btn-' + tabId).classList.add('bg-indigo-600', 'text-white');
     }
 
-    // Clock
-    function startHktCountdown() {
-      setInterval(() => {
-        const now = new Date();
-        let target = new Date();
-        target.setHours(15, 30, 0, 0);
-        if (now > target) target.setDate(target.getDate() + 1);
-        const diff = target - now;
-        document.getElementById('waiverCountdown').innerText = 
-          `${Math.floor(diff / 3600000).toString().padStart(2, '0')}h ${Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0')}m ${Math.floor((diff % 60000) / 1000).toString().padStart(2, '0')}s`;
-      }, 1000);
-    }
-
-    // OAuth redirect logic
-    function openYahooAuthModal() { document.getElementById('yahooAuthModal').classList.remove('hidden'); }
-    function closeYahooAuthModal() { document.getElementById('yahooAuthModal').classList.add('hidden'); }
-    
     function redirectToYahoo() {
-      // Constructs the proper OAuth 2.0 URL
-      const authUrl = `https://api.login.yahoo.com/oauth2/request_auth?client_id=${YAHOO_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&language=en-us`;
-      // Redirects the browser
-      window.location.href = authUrl;
+      window.location.href = `https://api.login.yahoo.com/oauth2/request_auth?client_id=${YAHOO_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&language=en-us`;
     }
-
-    function showCustomModal(title, message) {
-      document.getElementById('customModalTitle').innerText = title;
-      document.getElementById('customModalMessage').innerText = message;
-      document.getElementById('customModal').classList.remove('hidden');
-    }
-    function closeCustomModal() { document.getElementById('customModal').classList.add('hidden'); }
   </script>
 </body>
 </html>
