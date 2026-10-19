@@ -1,0 +1,13 @@
+{
+ "generated": "2026-10-19T22:36:28.199366+00:00",
+ "window_days": 3,
+ "count": 0,
+ "errors": [
+  "RotoWire: HTTPSConnectionPool(host='www.rotowire.com', port=443): Max retries exceeded with url: /rss/news.php?sport=NBA (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+  "Yahoo Sports: HTTPSConnectionPool(host='sports.yahoo.com', port=443): Max retries exceeded with url: /nba/rss.xml (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+  "ESPN: HTTPSConnectionPool(host='www.espn.com', port=443): Max retries exceeded with url: /espn/rss/nba/news (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+  "CBS Sports: HTTPSConnectionPool(host='www.cbssports.com', port=443): Max retries exceeded with url: /rss/headlines/nba/ (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+  "NBA.com: HTTPSConnectionPool(host='www.nba.com', port=443): Max retries exceeded with url: /rss/nba_rss.xml (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+ ],
+ "articles": []
+}
