@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC Fantasy Basketball - Strict Draft Analysis</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  .toggle-container {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  .toggle-btn {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  .toggle-btn:hover {
+    background-color: #1a252f;
+  }
+  .container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+  }
+  h2 {
+    color: #2980b9;
+    margin-top: 30px;
+  }
+  h3 {
+    color: #34495e;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f6f8;
+    color: #2c3e50;
+  }
+  .team-section {
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    border-left: 4px solid #3498db;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0 5px 5px 0;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="toggle-container">
+  <button class="toggle-btn" onclick="toggleLanguage()">切換至繁體中文 / Switch to Traditional Chinese</button>
+</div>
+
+<div class="container" id="content-en">
+  <h1>FC Fantasy Basketball Strict Draft Analysis: 9-Cat Roto Grade Book</h1>
+  <p><strong>Update Date:</strong> October 2026. Utilizing the v3.0 replacement-level model adjusted for the 9-category Roto format based on the "Draft Results _FC Fantasy Basketball _ Yahoo! Sports.pdf" document[cite: 1]. Player names are retained in English.</p>
+  
+  <p>Unlike Head-to-Head formats that reward extreme punting, the 9-cat Roto system requires a balanced approach to capture standings points across all categories. The grades below evaluate the opportunity cost of each pick, contextualizing what was available on the board versus the roster's compounding category needs.</p>
+
+  <h2>1. Three Key Takeaways from the Board</h2>
+  <ul>
+    <li><strong>Roto Baseline Stabilization:</strong> Drafting high-volume specialists early requires immediate stabilization. Teams securing high-usage guards in Round 1 must meticulously monitor FG% and TOs in the middle rounds to avoid permanently anchoring themselves at the bottom of those roto categories.</li>
+    <li><strong>The Cost of Potential:</strong> The draft features heavy investments in upside, such as Shatin Happy Milan selecting Cooper Flagg (DAL-SG,SF,PF)[cite: 1] and Stephon Castle (SAS-PG,SG)[cite: 2]. While valuable, blending youth with high-floor veterans is essential in Roto to guarantee steady cumulative counting stats.</li>
+    <li><strong>End-of-Draft Positional Scarcity:</strong> The late rounds highlight a scramble for big-man stats, forcing teams to rely on backup centers for residual BLK and REB accumulation.</li>
+  </ul>
+
+  <h2>2. Highlighted Team-by-Team Breakdown</h2>
+
+  <div class="team-section">
+    <h3>Grade B+ | Noob: The Dual-Threat Foundation</h3>
+    <p><strong>Core Roster:</strong> Victor Wembanyama (SAS-C)[cite: 1], Kyrie Irving (DAL-PG)[cite: 1], Domantas Sabonis (SAC-PF,C)[cite: 2], Paul George (BOS-SF,PF)[cite: 2], Yaxel Lendeborg[cite: 2], LeBron James (LAL-SF,PF)[cite: 2], Cason Wallace (OKC-PG,SG,SF)[cite: 3], Kristaps Porzingis (GSW-C)[cite: 3], Jeremiah Fears (NOP-PG,SG)[cite: 3], Kevin Porter Jr. (MIL-PG,SG)[cite: 4], Tari Eason (HOU-SG,SF,PF)[cite: 4], Luke Kornet (SAS-C)[cite: 4].</p>
+    <p><strong>Strategy Check:</strong> Securing Wembanyama and Irving establishes an elite baseline in BLK, FT%, and 3PTM[cite: 1]. Sabonis acts as a central hub for AST and REB from the frontcourt[cite: 2]. The addition of veterans like George and James secures reliable counting stats[cite: 2], though Porzingis introduces volume risk depending on games played[cite: 3].</p>
+    <p><strong>If I took over:</strong> The team has a strong REB/AST/BLK structure. I would monitor the guard rotation carefully, ensuring Porter Jr. and Wallace provide enough 3PTM and ST to supplement Irving[cite: 1, 3, 4]. Trading frontcourt depth for a low-turnover, high-steal guard would solidify the roto standings.</p>
+  </div>
+
+  <div class="team-section">
+    <h3>Grade B | Faptors: Efficiency and Big-Man Dominance</h3>
+    <p><strong>Core Roster:</strong> Nikola Jokić (DEN-C)[cite: 1], Trey Murphy III (NOP-SG,SF)[cite: 1], Evan Mobley (CLE-PF,C)[cite: 2], Tyler Herro (MIL-PG,SG)[cite: 2], Dyson Daniels (ATL-SG,SF)[cite: 3], Zach LaVine (SAC-PG,SG,SF)[cite: 3], Isaiah Hartenstein (OKC-C)[cite: 3], Cameron Johnson (DEN-SF,PF)[cite: 3], Kyshawn George (WAS-SG,SF,PF)[cite: 3], Collin Gillespie (PHX-PG,SG)[cite: 4], Ace Bailey (UTA-SF,PF)[cite: 4], Keldon Johnson (SAS-SF,PF)[cite: 4].</p>
+    <p><strong>Strategy Check:</strong> Jokić and Mobley create an unbreakable FG%, REB, and AST floor for the frontcourt[cite: 1, 2]. Surrounding them with Murphy III, Herro, and LaVine effectively injects 3PTM and FT%[cite: 1, 2, 3]. The late addition of Hartenstein guarantees peripheral big-man stats[cite: 3].</p>
+    <p><strong>If I took over:</strong> AST is overly reliant on Jokić[cite: 1]. Gillespie and Daniels must step up in the backcourt[cite: 3, 4]. I would actively shop a wing like Keldon Johnson or Cameron Johnson for a pass-first point guard to diversify the assist sources and protect the AST category rank[cite: 3, 4].</p>
+  </div>
+
+  <div class="team-section">
+    <h3>Grade B- | BRAD PITT ROTO: Guard-Heavy Aggression</h3>
+    <p><strong>Core Roster:</strong> Shai Gilgeous-Alexander (OKC-PG)[cite: 1], Jalen Brunson (NYK-PG)[cite: 1], Walker Kessler (LAL-C)[cite: 2], Ausar Thompson (DET-SG,SF,PF)[cite: 2], Collin Murray-Boyles (TOR-PF,C)[cite: 2], Kon Knueppel (CHA-SG,SF)[cite: 2], Derik Queen (NOP-PF,C)[cite: 3], Reed Sheppard (HOU-PG,SG)[cite: 3], Egor Demin (BKN-PG,SG)[cite: 3], Klay Thompson (MIA-SG,SF)[cite: 4], Jusuf Nurkić (UTA-C)[cite: 4], Joan Beringer (MIN-PF,C)[cite: 4].</p>
+    <p><strong>Strategy Check:</strong> Gilgeous-Alexander and Brunson guarantee elite FT%, PTS, and AST[cite: 1]. Kessler is a necessary pivot to anchor BLK and FG% given the guard-heavy start[cite: 2]. The team heavily invested in youth with Sheppard and Demin, requiring immediate translation to fantasy production[cite: 3].</p>
+    <p><strong>If I took over:</strong> The REB and BLK categories are incredibly fragile if Kessler or Nurkić miss time[cite: 2, 4]. I would package one of the developmental rookies with a wing to secure a steady double-double threat to balance the heavy guard production[cite: 3].</p>
+  </div>
+
+  <div class="team-section">
+    <h3>Grade C+ | MadMaxScherz-a-... : The High-Usage Experiment</h3>
+    <p><strong>Core Roster:</strong> Luka Dončić (LAL-PG,SG)[cite: 1], Bam Adebayo (MIA-PF,C)[cite: 1], LaMelo Ball (MIN-PG)[cite: 2], AJ Dybantsa (WAS-SF)[cite: 2], Ja Morant (POR-PG)[cite: 2], Pascal Siakam (IND-PF,C)[cite: 2], Keegan Murray (SAC-SF,PF)[cite: 3], Toumani Camara (POR-SF,PF)[cite: 3], RJ Barrett (TOR-SG,SF,PF)[cite: 3], Deandre Ayton (WAS-C)[cite: 4], Saddiq Bey (NOP-SF,PF)[cite: 4], Kyle Filipowski (UTA-PF,C)[cite: 4].</p>
+    <p><strong>Strategy Check:</strong> Combining Dončić, Ball, and Morant creates astronomical potential in PTS, AST, and 3PTM[cite: 1, 2]. Adebayo and Siakam provide necessary big-man counters without hurting FT% significantly[cite: 1, 2]. However, the TO volume will be exceptionally high, forcing a natural punt in a format that penalizes it.</p>
+    <p><strong>If I took over:</strong> Accepting the TO category loss, I would double down on maximizing FG% and REB. Ayton's efficiency will be crucial[cite: 4]. I would look to trade a volume scorer like Barrett for a high-efficiency defensive specialist to lift the BLK and ST baselines[cite: 3].</p>
+  </div>
+
+  <div class="team-section">
+    <h3>Grade C | Shatin Happy Milan: Youth Movement Risk</h3>
+    <p><strong>Core Roster:</strong> Cooper Flagg (DAL-SG,SF,PF)[cite: 1], Donovan Clingan (POR-C)[cite: 1], Alperen Şengün (HOU-PF,C)[cite: 1], Stephon Castle (SAS-PG,SG)[cite: 2], Dylan Harper (SAS-PG,SG)[cite: 2], Keyonte George (UTA-PG,SG)[cite: 2], Miles Bridges (PHX-PF)[cite: 3], Jalen Green (PHX-SG,SF)[cite: 3], Kelly Oubre Jr. (IND-SF,PF)[cite: 3], Ben Simmons (SAC-PG)[cite: 4], Jonathan Kuminga (MIN-SF,PF)[cite: 4], Isaiah Stewart (MEM-PF,C)[cite: 4].</p>
+    <p><strong>Strategy Check:</strong> Selecting Flagg and Clingan in the early rounds signals a long-term keeper mindset or a massive bet on rookie translation[cite: 1]. Şengün provides a reliable offensive hub[cite: 1]. The guard rotation of Castle, Harper, and George will likely struggle with FG% and TO[cite: 2].</p>
+    <p><strong>If I took over:</strong> Roto leagues are unforgiving to inefficiency. The combination of rookie guards and Green/Oubre Jr. threatens to tank FG%[cite: 2, 3]. I would immediately seek to trade Oubre Jr. or Simmons for a low-usage, high-efficiency 3-and-D veteran to repair the percentages[cite: 3, 4].</p>
+  </div>
+</div>
+
+<div class="container hidden" id="content-zh">
+  <h1>FC Fantasy Basketball 嚴格選秀覆盤：9-Cat Roto 評級表</h1>
+  <p><strong>更新日期：</strong> 2026年10月。採用 v3.0 合理替代級別，針對 9-cat Roto 模式調整。基於 "Draft Results _FC Fantasy Basketball _ Yahoo! Sports.pdf" 檔案進行分析[cite: 1]。球員姓名保留英文。</p>
+  
+  <p>與鼓勵極端放棄單項（Punting）的 H2H 模式不同，9-cat Roto 系統需要均衡的策略來在所有類別中爭取積分。以下評級衡量了每手的機會成本，將當時可選名單與陣容不斷累積的類別需求進行對比。</p>
+
+  <h2>1. 全場三個最值得學的取捨</h2>
+  <ul>
+    <li><strong>Roto 基礎數據穩定化：</strong> 早期選擇高使用率的專項球員需要立即穩定其他數據。在第一輪鎖定高球權後衛的球隊，必須在選秀中段嚴密監控 FG% 和 TO，以避免在這些 Roto 類別中永遠墊底。</li>
+    <li><strong>潛力的代價：</strong> 這次選秀出現了對高上限新秀的重度投資，例如 Shatin Happy Milan 選擇了 Cooper Flagg (DAL-SG,SF,PF)[cite: 1] 和 Stephon Castle (SAS-PG,SG)[cite: 2]。雖然有價值，但在 Roto 中將年輕球員與高下限的老將混合搭配，才能保證穩定的累計數據。</li>
+    <li><strong>選秀尾段的位置稀缺性：</strong> 尾段顯示出對長人數據的搶奪，迫使球隊依賴後備中鋒來累積剩餘的 BLK 和 REB。</li>
+  </ul>
+
+  <h2>2. 焦點球隊逐手評論</h2>
+
+  <div class="team-section">
+    <h3>評級 B+ | Noob：雙星基礎配置</h3>
+    <p><strong>核心陣容：</strong> Victor Wembanyama (SAS-C)[cite: 1]、Kyrie Irving (DAL-PG)[cite: 1]、Domantas Sabonis (SAC-PF,C)[cite: 2]、Paul George (BOS-SF,PF)[cite: 2]、Yaxel Lendeborg[cite: 2]、LeBron James (LAL-SF,PF)[cite: 2]、Cason Wallace (OKC-PG,SG,SF)[cite: 3]、Kristaps Porzingis (GSW-C)[cite: 3]、Jeremiah Fears (NOP-PG,SG)[cite: 3]、Kevin Porter Jr. (MIL-PG,SG)[cite: 4]、Tari Eason (HOU-SG,SF,PF)[cite: 4]、Luke Kornet (SAS-C)[cite: 4]。</p>
+    <p><strong>策略核對：</strong> 鎖定 Wembanyama 和 Irving 建立了 BLK、FT% 和 3PTM 的頂級下限[cite: 1]。Sabonis 則成為前場提供 AST 和 REB 的中樞[cite: 2]。加入 George 和 James 等老將確保了可靠的基礎數據[cite: 2]，不過 Porzingis 因出場數可能會帶來總量風險[cite: 3]。</p>
+    <p><strong>如果由我接手：</strong> 球隊在 REB/AST/BLK 結構上很強。我會仔細監控後衛輪換，確保 Porter Jr. 和 Wallace 能提供足夠的 3PTM 和 ST 來輔助 Irving[cite: 1, 3, 4]。用前場深度換取一個低失誤、高抄截的後衛將能鞏固 Roto 排名。</p>
+  </div>
+
+  <div class="team-section">
+    <h3>評級 B | Faptors：高效率與長人統治力</h3>
+    <p><strong>核心陣容：</strong> Nikola Jokić (DEN-C)[cite: 1]、Trey Murphy III (NOP-SG,SF)[cite: 1]、Evan Mobley (CLE-PF,C)[cite: 2]、Tyler Herro (MIL-PG,SG)[cite: 2]、Dyson Daniels (ATL-SG,SF)[cite: 3]、Zach LaVine (SAC-PG,SG,SF)[cite: 3]、Isaiah Hartenstein (OKC-C)[cite: 3]、Cameron Johnson (DEN-SF,PF)[cite: 3]、Kyshawn George (WAS-SG,SF,PF)[cite: 3]、Collin Gillespie (PHX-PG,SG)[cite: 4]、Ace Bailey (UTA-SF,PF)[cite: 4]、Keldon Johnson (SAS-SF,PF)[cite: 4]。</p>
+    <p><strong>策略核對：</strong> Jokić 和 Mobley 為前場創造了牢不可破的 FG%、REB 和 AST 下限[cite: 1, 2]。在他們周圍配置 Murphy III、Herro 和 LaVine 有效地注入了 3PTM 和 FT%[cite: 1, 2, 3]。尾段補充 Hartenstein 保證了邊緣的長人數據[cite: 3]。</p>
+    <p><strong>如果由我接手：</strong> AST 過於依賴 Jokić[cite: 1]。Gillespie 和 Daniels 必須在後場挺身而出[cite: 3, 4]。我會積極尋求交易，將 Keldon Johnson 或 Cameron Johnson 這樣的側翼換成傳球優先的控衛，以分散助攻來源並保護 AST 類別的排名[cite: 3, 4]。</p>
+  </div>
+
+  <div class="team-section">
+    <h3>評級 B- | BRAD PITT ROTO：後場強攻策略</h3>
+    <p><strong>核心陣容：</strong> Shai Gilgeous-Alexander (OKC-PG)[cite: 1]、Jalen Brunson (NYK-PG)[cite: 1]、Walker Kessler (LAL-C)[cite: 2]、Ausar Thompson (DET-SG,SF,PF)[cite: 2]、Collin Murray-Boyles (TOR-PF,C)[cite: 2]、Kon Knueppel (CHA-SG,SF)[cite: 2]、Derik Queen (NOP-PF,C)[cite: 3]、Reed Sheppard (HOU-PG,SG)[cite: 3]、Egor Demin (BKN-PG,SG)[cite: 3]、Klay Thompson (MIA-SG,SF)[cite: 4]、Jusuf Nurkić (UTA-C)[cite: 4]、Joan Beringer (MIN-PF,C)[cite: 4]。</p>
+    <p><strong>策略核對：</strong> Gilgeous-Alexander 和 Brunson 保證了頂級的 FT%、PTS 和 AST[cite: 1]。鑑於以強大的後場開局，Kessler 是穩定 BLK 和 FG% 的必要選擇[cite: 2]。球隊在 Sheppard 和 Demin 身上投入了大量年輕資產，需要他們能立即轉化為 Fantasy 產量[cite: 3]。</p>
+    <p><strong>如果由我接手：</strong> 如果 Kessler 或 Nurkić 缺陣，REB 和 BLK 類別將變得非常脆弱[cite: 2, 4]。我會將其中一名發展中的新秀與側翼打包，換取一個穩定的雙十威脅，以平衡過度傾斜的後場產量[cite: 3]。</p>
+  </div>
+
+  <div class="team-section">
+    <h3>評級 C+ | MadMaxScherz-a-... ：高球權實驗</h3>
+    <p><strong>核心陣容：</strong> Luka Dončić (LAL-PG,SG)[cite: 1]、Bam Adebayo (MIA-PF,C)[cite: 1]、LaMelo Ball (MIN-PG)[cite: 2]、AJ Dybantsa (WAS-SF)[cite: 2]、Ja Morant (POR-PG)[cite: 2]、Pascal Siakam (IND-PF,C)[cite: 2]、Keegan Murray (SAC-SF,PF)[cite: 3]、Toumani Camara (POR-SF,PF)[cite: 3]、RJ Barrett (TOR-SG,SF,PF)[cite: 3]、Deandre Ayton (WAS-C)[cite: 4]、Saddiq Bey (NOP-SF,PF)[cite: 4]、Kyle Filipowski (UTA-PF,C)[cite: 4]。</p>
+    <p><strong>策略核對：</strong> 將 Dončić、Ball 和 Morant 結合在一起，在 PTS、AST 和 3PTM 方面創造了天文數字般的潛力[cite: 1, 2]。Adebayo 和 Siakam 提供了必要的長人掩護，同時不會大幅拉低 FT%[cite: 1, 2]。然而，TO 總量將會非常高，迫使球隊在一個懲罰失誤的賽制中自然放棄該項。</p>
+    <p><strong>如果由我接手：</strong> 在接受 TO 類別落後的同時，我會加倍努力最大化 FG% 和 REB。Ayton 的效率將至關重要[cite: 4]。我會尋求將 Barrett 這樣的得分手換成高效率的防守專家，以提升 BLK 和 ST 的下限[cite: 3]。</p>
+  </div>
+
+  <div class="team-section">
+    <h3>評級 C | Shatin Happy Milan：年輕化的風險</h3>
+    <p><strong>核心陣容：</strong> Cooper Flagg (DAL-SG,SF,PF)[cite: 1]、Donovan Clingan (POR-C)[cite: 1]、Alperen Şengün (HOU-PF,C)[cite: 1]、Stephon Castle (SAS-PG,SG)[cite: 2]、Dylan Harper (SAS-PG,SG)[cite: 2]、Keyonte George (UTA-PG,SG)[cite: 2]、Miles Bridges (PHX-PF)[cite: 3]、Jalen Green (PHX-SG,SF)[cite: 3]、Kelly Oubre Jr. (IND-SF,PF)[cite: 3]、Ben Simmons (SAC-PG)[cite: 4]、Jonathan Kuminga (MIN-SF,PF)[cite: 4]、Isaiah Stewart (MEM-PF,C)[cite: 4]。</p>
+    <p><strong>策略核對：</strong> 在前幾輪選擇 Flagg 和 Clingan 標誌著長期保留的心態，或者是對新秀轉化率的巨大押注[cite: 1]。Şengün 提供了一個可靠的進攻中樞[cite: 1]。Castle、Harper 和 George 的後衛輪換可能在 FG% 和 TO 方面面臨掙扎[cite: 2]。</p>
+    <p><strong>如果由我接手：</strong> Roto 聯盟對低效率是毫不留情的。新秀後衛與 Green/Oubre Jr. 的組合有拖垮 FG% 的風險[cite: 2, 3]。我會立即尋求交易 Oubre Jr. 或 Simmons，換回一名低球權、高效率的 3-and-D 老將來修復命中率[cite: 3, 4]。</p>
+  </div>
+</div>
+
+<script>
+  function toggleLanguage() {
+    var enContent = document.getElementById("content-en");
+    var zhContent = document.getElementById("content-zh");
+    if (enContent.classList.contains("hidden")) {
+      enContent.classList.remove("hidden");
+      zhContent.classList.add("hidden");
+    } else {
+      enContent.classList.add("hidden");
+      zhContent.classList.remove("hidden");
+    }
+  }
+</script>
+
+</body>
+</html>
